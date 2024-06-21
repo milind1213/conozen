@@ -10,24 +10,19 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.convozen.CommonConstants;
 import com.convozen.DriverUtility.WebBrowser;
 import com.microsoft.playwright.Page;
-import lombok.SneakyThrows;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.Listeners;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.text.SimpleDateFormat;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
-
-import static com.convozen.Utils.FileUtil.getProperty;
+import static com.convozen.Utils.FileUtil.*;
 
 @Listeners(TestListeners.class)
 public class TestListeners extends WebBrowser implements ITestListener {
@@ -38,28 +33,17 @@ public class TestListeners extends WebBrowser implements ITestListener {
 
 	@Override
 	public synchronized void onStart(ITestContext context) {
-	    String reportDirPath = System.getProperty("user.dir") + "/reports/";
-	    File reportDir = new File(reportDirPath);
-	    if (!reportDir.exists() && !reportDir.mkdirs()) {
-	        System.err.println("Failed to create report directory: " + reportDirPath);
-	        return;
-	    }
-	    Arrays.stream(Objects.requireNonNull(reportDir.listFiles((dir, name) -> name.startsWith("Automation_Report_") && name.endsWith(".html"))))
-	          .forEach(file -> {
-	              try {
-	                  Files.deleteIfExists(file.toPath());
-	              } catch (IOException e) {
-	                  e.printStackTrace();
-	              }
-	     });
-	    String currentTime = new SimpleDateFormat("HHmmss").format(new Date());
-	    String reportFilePath = reportDirPath + "Automation_Report_" + currentTime + ".html";
-	    extentReports = ExtentManager.createInstance(reportFilePath, "Automation Test Report", "Test Execution Report");
+		reportPath = System.getProperty("user.dir") + "/reports/";
+		Path reportDirPath = Paths.get(reportPath);
+		createDirectoryIfNotExists(reportDirPath);
+		deleteOldReports(reportDirPath);
+		String reportFilePath =FileUtil.generateReportFilePath(reportPath);
+		extentReports = ExtentManager.createInstance(reportFilePath, "Automation Test Report", "Test Execution Report");
 	}
 
 	@Override
 	public synchronized void onTestStart(ITestResult result) {
-		String methodName = enhancedMethodName(result.getMethod().getMethodName());
+		String methodName = FileUtil.enhancedMethodName(result.getMethod().getMethodName());
 		String qualifiedName = result.getMethod().getQualifiedName();
 		int last = qualifiedName.lastIndexOf(".");
 		int mid = qualifiedName.substring(0, last).lastIndexOf(".");
@@ -116,13 +100,12 @@ public class TestListeners extends WebBrowser implements ITestListener {
 
 	@Override
 	public synchronized void onTestSkipped(ITestResult result) {
-		String methodName = enhancedMethodName(result.getMethod().getMethodName());
+		String methodName = FileUtil.enhancedMethodName(result.getMethod().getMethodName());
 		String logText = "<b>" + "Test Case: '" + methodName + " Skipped" + "</b>";
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.INDIGO);
 		extentTest.get().skip(m);
 	}
 
-	@SneakyThrows
 	@Override
 	public synchronized void onFinish(ITestContext context) {
 		System.out.println("[============== Finish Test method [" + context.getName() + "] =========]");
@@ -131,23 +114,7 @@ public class TestListeners extends WebBrowser implements ITestListener {
 		}
 		SlackIntegration slackIntegration = new SlackIntegration(getProperty(CommonConstants.COMMON,CommonConstants.CONVOZEN_SLACK_CHANENEL),
 				getProperty(CommonConstants.COMMON,CommonConstants.CONVOZEN_SLACK_TOKEN));
-		
 		slackIntegration.sendTestExecutionReportToSlack(reportPath, "Test Execution Report");
-	}
-
-	private String enhancedMethodName(String str) {
-		StringBuilder sb = new StringBuilder();
-		boolean capitalizeNext = true;
-		for (char c : str.toCharArray()) {
-			if (Character.isLetterOrDigit(c)) {
-				sb.append(capitalizeNext ? Character.toUpperCase(c) : Character.toLowerCase(c));
-				capitalizeNext = false;
-			} else if (sb.length() > 0) {
-				sb.append(' ');
-				capitalizeNext = true;
-			}
-		}
-		return sb.toString().trim();
 	}
 
 }  

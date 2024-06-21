@@ -24,7 +24,6 @@ public class Selenium extends BaseTest {
 		}
 	}
 	
-	
 	@AfterMethod
 	public void tearDownTestMethod() {
 		if (driver != null) {
@@ -32,8 +31,7 @@ public class Selenium extends BaseTest {
 			webDriver.remove();
 		}
 	}
-	
-	
+
 	public ConvozenWebLogin getConvozenWebLogin() {
 	    String url = getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL);
 	    String userName = getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME);
@@ -46,7 +44,6 @@ public class Selenium extends BaseTest {
 	    log("Entering Email and Password in input field");
 	    convozenUser.webLogin(userName, password);
 	    log("Successfully logged in with Email : " + userName);
-
 	    return convozenUser;
 	}
 

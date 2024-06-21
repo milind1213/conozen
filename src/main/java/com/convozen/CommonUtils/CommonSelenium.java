@@ -49,7 +49,7 @@ public class CommonSelenium {
 			element.sendKeys(text);
 			waitFor(1);
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.getMessage();
 			Assert.fail("Failed to send keys to element [" + locator + "]");
 		}
 	}

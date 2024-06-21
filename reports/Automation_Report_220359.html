@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Test Execution Report</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css"></style></head><body class="spa -report standard">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Automation Test Report</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Jun 21, 2024 10:03:59 PM</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('category-view')">
+<a id="nav-category" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-tag"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Jun 21, 2024 10:03:59 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Jun 21, 2024 10:04:26 PM</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Tests Passed</p>
+<h3>0</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Tests Failed</p>
+<h3>1</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Tests</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='0%'>
+<b>0</b> tests passed
+</small>
+</div>
+<div>
+<small data-tooltip='100%'><b>1</b> tests failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Log events</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='events-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='0%'><b>0</b> events passed</small></div>
+<div>
+<small data-tooltip='60%'><b>3</b> events failed,
+<b data-tooltip='%'>2</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"callsFilters":24.507
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 category-container">
+<div class="card">
+<div class="card-header"><p>Tags</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
+<tr>
+<td>DefaultSuite</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Selenium</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>Username</td>
+<td>milind</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Linux</td>
+</tr>
+<tr>
+<td>OS Version</td>
+<td>5.15.0-107-generic</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>11.0.23</td>
+</tr>
+<tr>
+<td>Time Zone</td>
+<td>Asia/Kolkata</td>
+</tr>
+<tr>
+<td>Author</td>
+<td>Convozen</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 0,
+failParent: 1,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 0,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 0,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+passEvents: 0,
+failEvents: 3,
+warningEvents: 0,
+skipEvents: 0,
+infoEvents: 2
+};
+</script><div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
+<ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" href="#">DefaultSuite</a><a class="dropdown-item" href="#">Selenium</a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="fail" test-id="1"
+          author=""
+          tag="DefaultSuite Selenium"
+          device="">
+          <div class="test-detail">
+            <p class="name">callsFilters</p>
+            <p class="text-sm">
+              <span>10:04:01 PM</span> / <span>00:00:24:507</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">callsFilters</h5>
+<span class='badge badge-success'>06.21.2024 10:04:01 PM</span>
+<span class='badge badge-danger'>06.21.2024 10:04:25 PM</span>
+<span class='badge badge-default'>00:00:24:507</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">DefaultSuite</span>
+<span class="badge badge-pill badge-default">Selenium</span></div>
+<div class="m-t-10 m-l-5"></div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>10:04:02 PM</td>
+        <td>
+          Navigated to URL: https://nobroker.convozen.ai/
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>10:04:02 PM</td>
+        <td>
+          Entering Email and Password in input field
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:25 PM</td>
+        <td>
+          <details><summary><b><font color='red'>Exception Occurred: Click to View</font></b></summary>[org.testng.Assert.fail(Assert.java:111)<br> com.convozen.CommonUtils.CommonSelenium.sendKeys(CommonSelenium.java:53)<br> com.convozen.Pages.Selenium.ConvozenWebLogin.webLogin(ConvozenWebLogin.java:23)<br> com.convozen.Tests.Selenium.getConvozenWebLogin(Selenium.java:45)<br> com.convozen.Tests.Selenium.callsFilters(Selenium.java:53)<br> java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br> java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br> java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br> java.base/java.lang.reflect.Method.invoke(Method.java:566)<br> org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)<br> org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)<br> org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)<br> org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)<br> org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)<br> org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)<br> org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)<br> org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)<br> java.base/java.util.ArrayList.forEach(ArrayList.java:1541)<br> org.testng.TestRunner.privateRun(TestRunner.java:739)<br> org.testng.TestRunner.run(TestRunner.java:614)<br> org.testng.SuiteRunner.runTest(SuiteRunner.java:421)<br> org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)<br> org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)<br> org.testng.SuiteRunner.run(SuiteRunner.java:312)<br> org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)<br> org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)<br> org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)<br> org.testng.TestNG.runSuitesLocally(TestNG.java:1208)<br> org.testng.TestNG.runSuites(TestNG.java:1112)<br> org.testng.TestNG.run(TestNG.java:1079)<br> com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)<br> com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)]</details>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:25 PM</td>
+        <td>
+          <b><font color='red'>Screenshot of Failure</font></b>
+    <div class="row mb-3"><div class="col-md-3">
+        <a href="data:image/png;base64,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AQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAblzSNgAABHdJREFUAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAACBVAYAAIBAKgMAAEAglQEAACCQygAAABBIZQAAAAikMgAAAARSGQAAAAKpDAAAAIFUBgAAgEAqAwAAQCCVAQAAIJDKAAAAEEhlAAAACKQyAAAABFIZAAAAAqkMAAAAgVQGAACAQCoDAABAIJUBAAAgkMoAAAAQSGUAAAAIpDIAAAAEUhkAAAACqQwAAADB/wcqbpolATxmXQAAAABJRU5ErkJggg==" data-featherlight="image"><span class="badge badge-gradient-primary">base64 img</span></a>
+        
+    </div></div>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:25 PM</td>
+        <td>
+          <span class='badge white-text red'><b>Test Failed! 😒😒😒 </b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">DefaultSuite</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>DefaultSuite</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:04:01 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>callsFilters</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">Selenium</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>Selenium</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:04:01 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>callsFilters</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>
