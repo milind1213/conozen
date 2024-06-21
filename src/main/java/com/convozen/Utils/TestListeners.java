@@ -1,4 +1,4 @@
-	  package com.convozen.TestBase;
+package com.convozen.Utils;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -7,7 +7,8 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.convozen.Utils.ExtentManager;
+import com.convozen.CommonConstants;
+import com.convozen.DriverUtility.WebBrowser;
 import com.microsoft.playwright.Page;
 import lombok.SneakyThrows;
 import org.openqa.selenium.OutputType;
@@ -29,7 +30,7 @@ import java.util.Objects;
 import static com.convozen.Utils.FileUtil.getProperty;
 
 @Listeners(TestListeners.class)
-public class TestListeners extends BaseTest implements ITestListener {
+public class TestListeners extends WebBrowser implements ITestListener {
 	public static ExtentReports extentReports;
 	public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 	public static String screenshotName;
@@ -84,8 +85,8 @@ public class TestListeners extends BaseTest implements ITestListener {
 		String exceptionMessage = Arrays.toString(result.getThrowable().getStackTrace());
 		if (webDriver.get() != null) {
 			failureScreenshot = ((TakesScreenshot) webDriver.get()).getScreenshotAs(OutputType.BASE64);
-		} else if (page.get() != null) {
-			byte[] screenshotBytes = page.get().screenshot(new Page.ScreenshotOptions());
+		} else if (newPage.get() != null) {
+			byte[] screenshotBytes = newPage.get().screenshot(new Page.ScreenshotOptions());
 			failureScreenshot = Base64.getEncoder().encodeToString(screenshotBytes);
 		}
 		if (!failureScreenshot.isEmpty()) {
@@ -108,7 +109,7 @@ public class TestListeners extends BaseTest implements ITestListener {
 
 	@Override
 	public synchronized void onTestSuccess(ITestResult result) {
-		String logText = "<b>" + "Test Passed \uD83D\uDE0A\uD83D\uDE0A\uD83D\uDE0A " + "</b>";
+		String logText = "<b>" + "Test Passed! \uD83D\uDE0A " + "</b>";
 		Markup m = MarkupHelper.createLabel(logText, ExtentColor.GREEN);
 		extentTest.get().pass(m);
 	}
@@ -128,8 +129,9 @@ public class TestListeners extends BaseTest implements ITestListener {
 		if (extentReports != null) {
 			extentReports.flush();
 		}
-		SlackIntegration slackIntegration = new SlackIntegration(getProperty("common", "convozen.slackChannel"),
-				getProperty("common", "convozen.slackToken"));
+		SlackIntegration slackIntegration = new SlackIntegration(getProperty(CommonConstants.COMMON,CommonConstants.CONVOZEN_SLACK_CHANENEL),
+				getProperty(CommonConstants.COMMON,CommonConstants.CONVOZEN_SLACK_TOKEN));
+		
 		slackIntegration.sendTestExecutionReportToSlack(reportPath, "Test Execution Report");
 	}
 

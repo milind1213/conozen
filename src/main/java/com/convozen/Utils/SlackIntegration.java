@@ -1,5 +1,4 @@
-package com.convozen.TestBase;
-
+package com.convozen.Utils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -65,3 +64,5 @@ public class SlackIntegration {
         }
     }
 }
+
+

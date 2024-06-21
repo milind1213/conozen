@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.convozen.Tests.RunTest_2">
+      <class name="com.convozen.TestBase.BaseTest">
         <methods>
-          <include name="testPageTitle"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.convozen.Tests.RunTest_2 -->
+      </class> <!-- com.convozen.TestBase.BaseTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

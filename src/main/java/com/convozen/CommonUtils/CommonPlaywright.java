@@ -6,7 +6,6 @@ import java.util.Date;
 import org.apache.logging.log4j.LogManager;
 import org.testng.Reporter;
 import com.aventstack.extentreports.Status;
-import com.convozen.Utils.ExtentTestManager;
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.PlaywrightException;
@@ -181,16 +180,13 @@ public class CommonPlaywright {
 		}
 	}
 
-	public void log(String message) {
-		try {
-			ExtentTestManager.getTest().log(Status.INFO, message);
-			LogManager.getLogger(CommonSelenium.class).info(message);
-			Reporter.log(message);
-		} catch (Exception e) {
-			System.err.println("Log error in " + this.getClass().getName());
-		}
-		String timestamp = new SimpleDateFormat("h:mm:ss a").format(new Date());
-		System.out.println("[" + timestamp + "] " + "INFO: " + message);
-	}
+	/*
+	 * public void log(String message) { try {
+	 * LogManager.getLogger(CommonSelenium.class).info(message);
+	 * Reporter.log(message); } catch (Exception e) {
+	 * System.err.println("Log error in " + this.getClass().getName()); } String
+	 * timestamp = new SimpleDateFormat("h:mm:ss a").format(new Date());
+	 * System.out.println("[" + timestamp + "] " + "INFO: " + message); }
+	 */
 
 }

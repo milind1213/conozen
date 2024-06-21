@@ -13,9 +13,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
-import com.aventstack.extentreports.Status;
-import com.convozen.Utils.ExtentTestManager;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.convozen.Utils.TestListeners;
 public class CommonSelenium {
 	public WebDriver driver;
 
@@ -27,15 +28,18 @@ public class CommonSelenium {
 	
 	public void log(String message) {
 		try {
-			ExtentTestManager.getTest().log(Status.INFO, message);
-			LogManager.getLogger(CommonSelenium.class).info(message);
-			Reporter.log(message);
+			String timestamp = new SimpleDateFormat("h:mm:ss a").format(new Date());
+			ExtentTest extentTest = TestListeners.extentTest.get();
+			if (extentTest != null) {
+				extentTest.log(Status.INFO, message);
+			}
+			System.out.println("[" + timestamp + "] " + "INFO: " + message);
 		} catch (Exception e) {
-			System.err.println("Log error in " + this.getClass().getName());
+			e.printStackTrace();
+			System.err.println("Failed to log message: " + message);
 		}
-		String timestamp = new SimpleDateFormat("h:mm:ss a").format(new Date());
-		System.out.println("[" + timestamp + "] " + "INFO: " + message);
 	}
+	
 
 	public void sendKeys(By locator, String text) {
 		try {

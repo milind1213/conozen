@@ -9,17 +9,19 @@ import java.util.HashMap;
 import java.util.Random;
 
 public final class CommonConstants {
-	public static final String WEBDRIVER_RUN_MODE_HEADLESS = "nbhood.webDriver.headless";
-	public static final String WEBDRIVER_RUN_MODE_HEADLESS_SSN = "nb.SSN.WebDriver.headless";
-	public static final String NB_SLACK_REPORT = "nb.slack.report";
-	public static final String NB_SLACK_INTERNALCHANNEL = "nb.slack.internalChannel";
-	public static final String CURRENT_WORKING_DIRECTORY = System.getProperty("user.dir");
-	public static HashMap<String, HashMap<String, Integer>> EXTENT_METHOD_COUNT = new HashMap<>();
-	public static String suiteCount = "", proj = "";
+	
+	public static final String CONVOZEN_USERNAME = "convozen.username";
+	public static final String CONVOZEN_PASSWORD = "convozen.password";
+	public static final String CONVOZEN_WEBURL = "convozen.weburl";
+	public static final String BROWSER = "convozen.browser";
+	public static final String RUNMODE_IS_HEADLESS = "convozen.headless";
+	public static final String CONVOZEN_SLACK_CHANENEL = "convozen.slackChannel";
+	public static final String CONVOZEN_SLACK_TOKEN = "convozen.slackToken";
+	public static final String CURRENT_DIRECTORY = System.getProperty("user.dir");
+	public static final String COMMON = "common";
+	public static final String CONVOZEN = "convozen";
 
-	public enum Driver {
-		Android, WebDriver, Playwright
-	}
+
 
 	public static SEMANTIC_SENTENCE RANDOM_SEMANTIC() {
 		Random random = new Random();
@@ -27,63 +29,54 @@ public final class CommonConstants {
 	}
 
 	public enum CALLZEN_VALUES {
-		SEMANTIC_MOMENT("Semantic Moment"), MOMENTS("Moments"), GLOBAL("Global"), GLOBL("global"),
-		POSITIVE("Positive"),AAD_ANYWAY("Add anyway"),SUGGEST_SIMMILER_PHRASES("Suggest similar phrases"), 
-		DELET_PHRASES("Delete phrases"),FILTERED("Filtered"), TEAM("Team"), FILTER("Filter"), 
-		KEYWORD_MOMENT("Keyword Moment"),INSTRUCTIONAL_MOMENT("Instructional Moment"), CAMPAIGN_NAME("Campaign Name"),
-		SELECT_CAMPAIGN_NAME("Select Campaign Name"), MODE_OF_CALLING("Mode of calling"),SELECT_CALLING_MODE("Select Mode of calling"),
-		PROCESSNAME("Process Name"),SELECT_PROCESS_NAME("Select Process Name"), MOMENT_ACTIVATION_STATUS("Moment Activation Status"),
-		ACTIVE("Active"), INACTIVE("Inactive"), DRAFTED("Drafted"), MOMENT_TYPE("Moment Type"),	SELECT_MOMENT_TYPE("Select Moment Type"),
-		VALIDATION_STATUS("Validation Status"),	SELECT_VALIDATION_STATUS("Select Validation Status"), INSTRUCTIONAL("Instructional"), 
-		CHECKLIST("Checklist"),	CALL_LEVEL("Call level"), CUSTOMER_LEVEL("Customer level"), SUCCESS("Success"), 
-		PROCESSING("Processing"),PROCESSING_FEEDBACK("Feedback processing"), FAILED("Failed"), SOURCE("Source"), 
-		SELECT_SOURCE("Select Source"),	MOMENT_SCREEN("Moment Screen"), MOMENTS_SCREEN("Moments Screen"), 
-		SMARTCLUSTER_SCREEN("Smart Cluster Screen"),SHOW_ONLY_SMARTMOMENTS("Show Only Smart Moments"), CALLS("Calls"), 
-		YESTERDAY("Yesterday"),	CALL_DURATION("Call Duration"), CUSTOMER_ID("Customer Id"), ENTER_CUSTOMER_ID("Enter Customer Id"),
+		SEMANTIC_MOMENT("Semantic Moment"), MOMENTS("Moments"), GLOBAL("Global"), GLOBL("global"), POSITIVE("Positive"),
+		AAD_ANYWAY("Add anyway"), SUGGEST_SIMMILER_PHRASES("Suggest similar phrases"), DELET_PHRASES("Delete phrases"),
+		FILTERED("Filtered"), TEAM("Team"), FILTER("Filter"), KEYWORD_MOMENT("Keyword Moment"),
+		INSTRUCTIONAL_MOMENT("Instructional Moment"), CAMPAIGN_NAME("Campaign Name"),
+		SELECT_CAMPAIGN_NAME("Select Campaign Name"), MODE_OF_CALLING("Mode of calling"),
+		SELECT_CALLING_MODE("Select Mode of calling"), PROCESSNAME("Process Name"),
+		SELECT_PROCESS_NAME("Select Process Name"), MOMENT_ACTIVATION_STATUS("Moment Activation Status"),
+		ACTIVE("Active"), INACTIVE("Inactive"), DRAFTED("Drafted"), MOMENT_TYPE("Moment Type"),
+		SELECT_MOMENT_TYPE("Select Moment Type"), VALIDATION_STATUS("Validation Status"),
+		SELECT_VALIDATION_STATUS("Select Validation Status"), INSTRUCTIONAL("Instructional"), CHECKLIST("Checklist"),
+		CALL_LEVEL("Call level"), CUSTOMER_LEVEL("Customer level"), SUCCESS("Success"), PROCESSING("Processing"),
+		PROCESSING_FEEDBACK("Feedback processing"), FAILED("Failed"), SOURCE("Source"), SELECT_SOURCE("Select Source"),
+		MOMENT_SCREEN("Moment Screen"), MOMENTS_SCREEN("Moments Screen"), SMARTCLUSTER_SCREEN("Smart Cluster Screen"),
+		SHOW_ONLY_SMARTMOMENTS("Show Only Smart Moments"), CALLS("Calls"), YESTERDAY("Yesterday"),
+		CALL_DURATION("Call Duration"), CUSTOMER_ID("Customer Id"), ENTER_CUSTOMER_ID("Enter Customer Id"),
 		CUSTOMER_PHONE("Customer Phone"), ENTER_CUSTOMER_PHONE("Enter Customer Phone"), CALL_TIME("Call Time"),
 		SMART_CLUSTER_SCREEN("Smart Cluster Screen"), SMARTMOMENTS("Smart Moments"), AGENT_NAME("Agent Name"),
-		ENTER_AGENT_NAME("Enter Agent Name"), CUSTOMER_EMAIL("Customer Email"),	ENTER_CUSTOMER_EMAIL("Enter Customer Email"),
-		CALL_ID("Call Id"), TALKTIME("Talktime"),GRETER_THAN_OR_EQUAL_TO("Greater than or equal to"), 
-		LESS_THAN_OR_EQUAL_TO("Less than or equal to"),	BETWEEN("Between"), OVERLAP_DURATION("Overlap Duration"), 
-		SILENCE_DURATION("Silence Duration"),TRANSCRIPTION_STATUS("Transcription Status"), CALL_PROGRESS("Call Progress"),
-		SELECT_MOMENT_NAME("Select Moment Name"), POSITIVE_("Positive"), HEIGHLIGHTS("Highlights"),	SELECT_HEIGHLIGHTS("Select Highlight"),
-		LANGUAGE("Language"), SELECT_LANGUAGE("Select Language"),CHECKKISTS("Checklists"), SELECT_CHECKKIST_NAME("Select Checklist Name"), 
-		CALL_SCORE("Call Score"),CALLLER_TYPE("Calller Type"), SELECT_CALLER_TYPE("Select Caller Type"), DELET("Delete"),MARK_AS_OPTIONAL("Mark as Optional"),
-		CREATE_GROUP("Create Group"), TAGGING_ATTRIBUTE("Tagging Attributes"),ACTIVATE("Activate"), DEACTIVATE("Deactivate"), BULK_TAG("Bulk tag"),
-		BULK_UNTAG("Bulk untag"), TODAY("Today"),SUMMARY("Summary"), GENERATE_SUMMARY("Generate Summary"), 
-		INTRACTION_HISTORY("Interaction History"),AGENTS("Agents"), SMART_CLUSTERS("Smart Clusters"), CALL("Call"), CHAT("Chat"), 
-		SETTINGS("Settings"),SELECT_YOUR_TEAM("Select your team"), CHECKLIST_TYPE("Checklist Type"),SELECT_CHECKLIST_TYPE("Select Checklist Type"),
-		CONDITIONAL("Conditional"),	SELECT_CONDITIONAL("Select Conditional"),SEMANTIC("Semantic");
+		ENTER_AGENT_NAME("Enter Agent Name"), CUSTOMER_EMAIL("Customer Email"),
+		ENTER_CUSTOMER_EMAIL("Enter Customer Email"), CALL_ID("Call Id"), TALKTIME("Talktime"),
+		GRETER_THAN_OR_EQUAL_TO("Greater than or equal to"), LESS_THAN_OR_EQUAL_TO("Less than or equal to"),
+		BETWEEN("Between"), OVERLAP_DURATION("Overlap Duration"), SILENCE_DURATION("Silence Duration"),
+		TRANSCRIPTION_STATUS("Transcription Status"), CALL_PROGRESS("Call Progress"),
+		SELECT_MOMENT_NAME("Select Moment Name"), POSITIVE_("Positive"), HEIGHLIGHTS("Highlights"),
+		SELECT_HEIGHLIGHTS("Select Highlight"), LANGUAGE("Language"), SELECT_LANGUAGE("Select Language"),
+		CHECKKISTS("Checklists"), SELECT_CHECKKIST_NAME("Select Checklist Name"), CALL_SCORE("Call Score"),
+		CALLLER_TYPE("Calller Type"), SELECT_CALLER_TYPE("Select Caller Type"), DELET("Delete"),
+		MARK_AS_OPTIONAL("Mark as Optional"), CREATE_GROUP("Create Group"), TAGGING_ATTRIBUTE("Tagging Attributes"),
+		ACTIVATE("Activate"), DEACTIVATE("Deactivate"), BULK_TAG("Bulk tag"), BULK_UNTAG("Bulk untag"), TODAY("Today"),
+		SUMMARY("Summary"), GENERATE_SUMMARY("Generate Summary"), INTRACTION_HISTORY("Interaction History"),
+		AGENTS("Agents"), SMART_CLUSTERS("Smart Clusters"), CALL("Call"), CHAT("Chat"), SETTINGS("Settings"),
+		SELECT_YOUR_TEAM("Select your team"), CHECKLIST_TYPE("Checklist Type"),
+		SELECT_CHECKLIST_TYPE("Select Checklist Type"), CONDITIONAL("Conditional"),
+		SELECT_CONDITIONAL("Select Conditional"), SEMANTIC("Semantic");
+
 		String value;
-		CALLZEN_VALUES(String s) { value = s; 	}
-		public String VALUE() {	return value; }
-	}
 
-	public static INST_EX1 RANDOM_INST() {
-		Random random = new Random();
-		return INST_EX1.values()[random.nextInt(INST_EX1.values().length)];
-	}
-
-	public static INST_TEST RANDOM_INS_TEST() {
-		Random random = new Random();
-		return INST_TEST.values()[random.nextInt(INST_TEST.values().length)];
-	}
-
-	public enum CDR {
-		ID_URL("https://beta-new.callzen.ai/conversation-info?conversationId=8be8b399-3dca-4915-8bea-7fca8491e807&conversationType=call");
-		private final String keyword;
-		CDR(String keyword) {
-			this.keyword = keyword;
+		CALLZEN_VALUES(String s) {
+			value = s;
 		}
+
 		public String VALUE() {
-			return keyword;
+			return value;
 		}
 	}
-
+	
 	public enum INST_EX1 {
 		CUSTOMER_GREET("Did the agent greet the customer?"),
-		INTRODUCE("Did the agent introduce himself/herself to the customer?"), 
-		FOLLOWUP("Is it a follow-up call?"),
+		INTRODUCE("Did the agent introduce himself/herself to the customer?"), FOLLOWUP("Is it a follow-up call?"),
 		SALE_AGREEMENT("Did the agent inquire about sale agreement package purchase planning?"),
 		MAKE_PAYMENT("Did the agent discuss about making payment with the customer?"),
 		PAYMENT_ISSUES("Did the customer face issues while making payment?"),
@@ -94,48 +87,17 @@ public final class CommonConstants {
 		CONNECT_AND_CONFIRM("Did the agent say,I will connect with you. Okay, if anything is required, yes, sir?");
 
 		private final String keyword;
+
 		INST_EX1(String keyword) {
 			this.keyword = keyword;
 		}
-		public String VALUE() {
-			return keyword;
-		}
-	}
-
-	public enum INST_TEST {
-		CUSTOMER_GREET("Did the agent greet the customer?");
-
-		private final String keyword;
-
-		INST_TEST(String keyword) {
-			this.keyword = keyword;
-		}
 
 		public String VALUE() {
 			return keyword;
 		}
 	}
 
-	public enum SEMANTIC_SENTENCE {
-		GOOD_MORNING("Good Morning"), HOW_R_YOU("How are you"), GOOD_EVENING("Good evening"),
-		APPOLOGY("Sorry for interrupting"), SEND_MESSAGE("Hello"), UPDATE_PAYMENT_METHOD("update my information");
-
-		private final String sentence;
-
-		SEMANTIC_SENTENCE(String sentence) {
-			this.sentence = sentence;
-		}
-
-		public String SENTENCE() {
-			return sentence;
-		}
-	}
-
-	public static INSTRUCTIONAL_SENTENCE getRandomInstructional() {
-		Random random = new Random();
-		return INSTRUCTIONAL_SENTENCE.values()[random.nextInt(INSTRUCTIONAL_SENTENCE.values().length)];
-	}
-
+	
 	public enum INSTRUCTIONAL_SENTENCE {
 		DISCUSS_MAIL_CHANGE("Did customer discuss with agent related to mail ID change or update?"),
 		DISCUSS_SUBSCRIPTION("Did agent discuss with customer about subscription?"),
@@ -181,6 +143,67 @@ public final class CommonConstants {
 		}
 	}
 
+	public static INST_EX1 RANDOM_INST() {
+		Random random = new Random();
+		return INST_EX1.values()[random.nextInt(INST_EX1.values().length)];
+	}
+
+	public static INST_TEST RANDOM_INS_TEST() {
+		Random random = new Random();
+		return INST_TEST.values()[random.nextInt(INST_TEST.values().length)];
+	}
+
+	public enum CDR {
+		ID_URL("https://beta-new.callzen.ai/conversation-info?conversationId=8be8b399-3dca-4915-8bea-7fca8491e807&conversationType=call");
+
+		private final String keyword;
+
+		CDR(String keyword) {
+			this.keyword = keyword;
+		}
+
+		public String VALUE() {
+			return keyword;
+		}
+	}
+
+	
+
+	public enum INST_TEST {
+		CUSTOMER_GREET("Did the agent greet the customer?");
+
+		private final String keyword;
+
+		INST_TEST(String keyword) {
+			this.keyword = keyword;
+		}
+
+		public String VALUE() {
+			return keyword;
+		}
+	}
+
+	public enum SEMANTIC_SENTENCE {
+		GOOD_MORNING("Good Morning"), HOW_R_YOU("How are you"), GOOD_EVENING("Good evening"),
+		APPOLOGY("Sorry for interrupting"), SEND_MESSAGE("Hello"), UPDATE_PAYMENT_METHOD("update my information");
+
+		private final String sentence;
+
+		SEMANTIC_SENTENCE(String sentence) {
+			this.sentence = sentence;
+		}
+
+		public String SENTENCE() {
+			return sentence;
+		}
+	}
+
+	public static INSTRUCTIONAL_SENTENCE getRandomInstructional() {
+		Random random = new Random();
+		return INSTRUCTIONAL_SENTENCE.values()[random.nextInt(INSTRUCTIONAL_SENTENCE.values().length)];
+	}
+
+	
 	public static KEYWORD_TEXT RANDOM_KYWORD() {
 		Random random = new Random();
 		return KEYWORD_TEXT.values()[random.nextInt(KEYWORD_TEXT.values().length)];
@@ -359,26 +382,36 @@ public final class CommonConstants {
 		PaymentSuccessfull("Payment Successfull"), InspectionScheduled("Inspection Scheduled"),
 		InspectionStarted("Inspection Started"), AgreementCompleted("Agreement Completed"),
 		SoftCopyShared("Registered Soft Copy Shared");
-		String value; STATUS(String s) { value = s; }
-		STATUS() {value = this.name();}
-		public String toString() { 	return value; }
+
+		String value;
+
+		STATUS(String s) {
+			value = s;
+		}
+
+		STATUS() {
+			value = this.name();
+		}
+
+		public String toString() {
+			return value;
+		}
 	}
-	
 
 	public enum GENDER {
 		MALE, FEMALE, Male, Female, male, female
 	}
-
 
 	public enum CHECKOUT_VALUES {
 		AmexCardMsg("Amex cards are not supported currently"), PayNow("Pay Now"), SkipPay("Skip & Pay"),
 		IntermilesCard("3671233333333333"), PayZappCorpCard("4329091207169785"), PzCorpCardPwd("1111");
 
 		String value;
+
 		CHECKOUT_VALUES(String s) {
 			value = s;
 		}
-		
+
 		public String toString() {
 			return value;
 		}

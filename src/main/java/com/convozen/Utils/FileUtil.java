@@ -125,7 +125,6 @@ public class FileUtil {
 			FileUtils.copyDirectory(sourceFile, new File((dir)));
 			logger.info("report backup is done !!!");
 		}
-
 	}
 
 	public static boolean deleteFile(String sourcePath, String fileName) {
