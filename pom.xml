@@ -169,6 +169,7 @@
 			<version>1.18.26</version> <!-- or the latest version -->
 			<scope>provided</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>

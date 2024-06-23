@@ -1,5 +1,7 @@
 package com.convozen;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +11,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public final class CommonConstants {
-	
 	public static final String CONVOZEN_USERNAME = "convozen.username";
 	public static final String CONVOZEN_PASSWORD = "convozen.password";
 	public static final String CONVOZEN_WEBURL = "convozen.weburl";
@@ -21,7 +22,9 @@ public final class CommonConstants {
 	public static final String COMMON = "common";
 	public static final String CONVOZEN = "convozen";
 
-
+	public static String RANDOM_NAME() {
+		return RandomStringUtils.randomAlphabetic(3).toLowerCase();
+	}
 
 	public static SEMANTIC_SENTENCE RANDOM_SEMANTIC() {
 		Random random = new Random();
@@ -39,7 +42,7 @@ public final class CommonConstants {
 		ACTIVE("Active"), INACTIVE("Inactive"), DRAFTED("Drafted"), MOMENT_TYPE("Moment Type"),
 		SELECT_MOMENT_TYPE("Select Moment Type"), VALIDATION_STATUS("Validation Status"),
 		SELECT_VALIDATION_STATUS("Select Validation Status"), INSTRUCTIONAL("Instructional"), CHECKLIST("Checklist"),
-		CALL_LEVEL("Call level"), CUSTOMER_LEVEL("Customer level"), SUCCESS("Success"), PROCESSING("Processing"),
+		CALL_LEVEL("Call Level"), CUSTOMER_LEVEL("Customer Level"), SUCCESS("Success"), PROCESSING("Processing"),
 		PROCESSING_FEEDBACK("Feedback processing"), FAILED("Failed"), SOURCE("Source"), SELECT_SOURCE("Select Source"),
 		MOMENT_SCREEN("Moment Screen"), MOMENTS_SCREEN("Moments Screen"), SMARTCLUSTER_SCREEN("Smart Cluster Screen"),
 		SHOW_ONLY_SMARTMOMENTS("Show Only Smart Moments"), CALLS("Calls"), YESTERDAY("Yesterday"),

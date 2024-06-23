@@ -1,0 +1,82 @@
+package com.convozen.Pages.Playwrights;
+
+import com.convozen.CommonUtils.CommonPlaywright;
+import com.microsoft.playwright.Page;
+
+import static com.convozen.Pages.Playwrights.Locators.*;
+import static com.convozen.Pages.Playwrights.Locators.buttonText;
+
+public class WebLogin extends CommonPlaywright {
+    public Page page;
+
+    public WebLogin(Page page) {
+        super(page);
+        this.page = page;
+    }
+
+    protected String signWithGoogleBtn = "//button[normalize-space()='Sign In With Google']//*[name()='svg']";
+    protected String inputEmail = "//input[@type='email'  and @id='identifierId']";
+    protected String nextBtn = "//span[contains(text(),'Next')]";
+    protected String passwordInput = "//input[@name='Passwd']";
+
+    public WebDashboard convozenLogin(String email, String password) {
+        page.waitForSelector(emailField);
+        waitFor(5);
+        try {
+            log("Entering username: "+email);
+            fill(emailField, email);
+
+            log("Entering password: ********");
+            fill(passwordField, password);
+            waitFor(2);
+
+            log("Clicking on Sign In button");
+            clickWithForce(loginBtn);
+            log("Successfully logged in");
+
+            waitFor(3);
+            if (isLocatorPresent(page, buttonText.replace("btn", "Sign In"), 5)) {
+                click(buttonText.replace("btn", "Sign In"));
+                log("Clicking on Sign In button");
+            }
+        } catch (Exception e) {
+            log("Error: An error in login : " + e.getMessage());
+        }
+        return new WebDashboard(page); // Return the dashboard instance after login
+    }
+
+    public boolean isPageOpenSuccessfully() {
+        try {
+            page.waitForSelector(".nb__1BVSZ");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void selectPage(String title) {
+        waitFor(3);
+        String headerLocators = headerLocator.replace("menu", title);
+        try {
+            page.waitForSelector(headerLocators);
+            click(headerLocators);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loginWithGoogle(String email, String password) {
+        page.waitForSelector(signWithGoogleBtn);
+        click(signWithGoogleBtn);
+        fill(inputEmail, email);
+        click(nextBtn);
+        fill(passwordInput, password);
+        click(nextBtn);
+    }
+
+
+
+
+}
+
+

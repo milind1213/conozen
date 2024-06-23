@@ -9,13 +9,13 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.ConvozenWebDashboard;
+import com.convozen.Pages.Playwrights.WebDashboard;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 
 @Listeners(TestListeners.class)
 public class Playwright extends BaseTest {
-	private ConvozenWebDashboard user;
+	private WebDashboard user;
 
 	@BeforeMethod
 	public void setUp() {
@@ -24,17 +24,16 @@ public class Playwright extends BaseTest {
 		}
 	}
 
-	public ConvozenWebDashboard getConvozenWebLogin() {
+	public WebDashboard getConvozenWebLogin() {
 		String webUrl = getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL);
 		String userName = getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME);
 		String password = getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD);
 
 		page.navigate(webUrl);
 		log("Navigated to URL: " + webUrl);
-		user = new ConvozenWebDashboard(page);
+		user = new WebDashboard(page);
 
 		log("Entering Email and Password in input field");
-		user.getWebLogin(userName, password);
 		log("Successfully logged in with Email : " + userName);
 
 		return user;
@@ -42,7 +41,7 @@ public class Playwright extends BaseTest {
 
 	@Test
 	public void callFIlters() {
-		ConvozenWebDashboard user = getConvozenWebLogin();
+		WebDashboard user = getConvozenWebLogin();
 		log("Successfully logged in with Email : ");
 	}
 

@@ -1,5 +1,6 @@
 package com.convozen.DriverUtility;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class WebBrowser {
 	protected static ThreadLocal<Browser> browser = new ThreadLocal<>();
 	protected static ThreadLocal<Page> newPage = new ThreadLocal<>();
 	protected static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-	private static List<WebDriver> webDriverList = Collections.synchronizedList(new ArrayList<>());
+	private static final List<WebDriver> webDriverList = Collections.synchronizedList(new ArrayList<>());
 
 	public void getSeleniumDriver(String browserType, boolean isHeadless) {
 		if (browserType.equalsIgnoreCase("chrome")) {
@@ -34,7 +35,6 @@ public class WebBrowser {
 			if (isHeadless) {
 				options.addArguments("--headless");
 				options.addArguments("--window-size=1920,1080");
-			} else {
 			}
 			options.addArguments("--no-sandbox");
 			options.addArguments("--disable-dev-shm-usage");
@@ -56,32 +56,30 @@ public class WebBrowser {
 			webDriverList.add(driver);
 
 		} else if (browserType.equalsIgnoreCase("firefox")) {
-			FirefoxOptions options = new FirefoxOptions();
-			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+			FirefoxOptions option = new FirefoxOptions();
+			option.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			if (isHeadless) {
-				options.addArguments("--headless");
-				options.addArguments("--window-size=1920,1080");
-			} else {
-				System.out.println("Firefox Browser Launched...");
+				option.addArguments("--headless");
+				option.addArguments("--window-size=1920,1080");
 			}
-			options.addArguments("--no-sandbox");
-			options.addArguments("--disable-dev-shm-usage");
-			options.addArguments("--disable-extensions");
-			options.addArguments("--dns-prefetch-disable");
-			options.addArguments("--disable-gpu");
-			options.addArguments("--start-maximized");
-			options.addArguments("--disable-web-security");
-			options.addArguments("--no-proxy-server");
-			options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+			option.addArguments("--no-sandbox");
+			option.addArguments("--disable-dev-shm-usage");
+			option.addArguments("--disable-extensions");
+			option.addArguments("--dns-prefetch-disable");
+			option.addArguments("--disable-gpu");
+			option.addArguments("--start-maximized");
+			option.addArguments("--disable-web-security");
+			option.addArguments("--no-proxy-server");
+			option.setPageLoadStrategy(PageLoadStrategy.EAGER);
 
-			WebDriver driver = new FirefoxDriver(options);
+			WebDriver driver = new FirefoxDriver(option);
 			webDriver.set(driver);
 			webDriverList.add(driver);
 		}
 		webDriver.get();
 	}
 
-	
+
 	public void getPlaywrightBrowser(String browserType, boolean isHeadless) {
 		playwright.set(Playwright.create());
 		BrowserType.LaunchOptions options = new BrowserType.LaunchOptions().setHeadless(isHeadless);
@@ -99,7 +97,15 @@ public class WebBrowser {
 			throw new IllegalArgumentException("Unsupported Browser Type: " + browserType);
 		}
 		newPage.set(browser.get().newPage());
+		newPage.get().evaluate("() => { document.body.style.zoom = '80%'; }");
+		maximizeWindow(newPage.get());
 	}
 
+	private void maximizeWindow(Page page) {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int) screenSize.getWidth();
+		int screenHeight = (int) screenSize.getHeight();
+		page.setViewportSize(screenWidth, screenHeight);
+	}
 	
 }

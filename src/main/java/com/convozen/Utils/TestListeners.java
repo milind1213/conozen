@@ -28,7 +28,6 @@ import static com.convozen.Utils.FileUtil.*;
 public class TestListeners extends WebBrowser implements ITestListener {
 	public static ExtentReports extentReports;
 	public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
-	public static String screenshotName;
 	private String reportPath;
 
 	@Override
@@ -86,7 +85,7 @@ public class TestListeners extends WebBrowser implements ITestListener {
 					"<details><summary><b><font color='red'>Exception Occurred: Click to View</font></b></summary>"
 							+ stackTrace + "</details>");
 		}
-		String failureLog = "<b>Test Failed! \uD83D\uDE12\uD83D\uDE12\uD83D\uDE12 </b>";
+		String failureLog = "<b>Test Failed! \uD83D\uDE12 </b>";
 		Markup m = MarkupHelper.createLabel(failureLog, ExtentColor.RED);
 		extentTest.get().log(Status.FAIL, m);
 	}
@@ -117,4 +116,4 @@ public class TestListeners extends WebBrowser implements ITestListener {
 		slackIntegration.sendTestExecutionReportToSlack(reportPath, "Test Execution Report");
 	}
 
-}  
+}

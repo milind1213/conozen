@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Daily_Sanity_NoBroker">
+    <listeners>
+        <listener class-name="com.convozen.TestBase.RetryListener"/>
+        <listener class-name="com.convozen.Utils.TestListeners"/>
+    </listeners>
+
+    <test name="Sanity for Callzen">
+        <classes>
+            <class name="com.convozen.Tests.TestCallpageFilters"/>
+            <class name="com.convozen.Tests.TestMomentsfilters"/>
+            <class name="com.convozen.Tests.TestChecklistFilters"/>
+            <class name="com.convozen.Tests.TestAgentsFilters"/>
+            <class name="com.convozen.Tests.TestMomentscCRUD"/>
+            <class name="com.convozen.Tests.TestCheckListCRUD"/>
+        </classes>
+    </test>
+</suite>

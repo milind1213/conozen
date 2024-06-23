@@ -9,7 +9,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 public class RetryListener implements IAnnotationTransformer, IRetryAnalyzer {
-	private int retryCount = 0;
+	private int retryCount = 1;
 	private static final int MAX_RETRY_COUNT = 2; // Maximum number of retries
 
 	@Override

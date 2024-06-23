@@ -21,7 +21,7 @@ public class SlackIntegration {
 
     public void sendTestExecutionReportToSlack(String directoryPath, String reportHeader) {
         File latestReport = getLatestFileFromDir(directoryPath, "html");
-        System.out.println(" Latest Report Path :" + latestReport);
+        System.out.println("Latest Report Path :" + latestReport);
         if (latestReport != null && latestReport.exists()) {
             System.out.println("Sending Slack notification for project");
             System.out.println("Test Report Path: " + latestReport.getAbsolutePath());

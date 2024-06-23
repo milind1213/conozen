@@ -1,5 +1,7 @@
 package com.convozen.CommonUtils;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.convozen.Utils.TestListeners;
 import com.microsoft.playwright.Page;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +19,20 @@ public class CommonPlaywright {
 
 	public CommonPlaywright(Page page) {
 		this.page = page;
+	}
+
+	public void log(String message) {
+		try {
+			String timestamp = new SimpleDateFormat("h:mm:ss a").format(new Date());
+			ExtentTest extentTest = TestListeners.extentTest.get();
+			if (extentTest != null) {
+				extentTest.log(Status.INFO, message);
+			}
+			System.out.println("[" + timestamp + "] " + "INFO: " + message);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Failed to log message: " + message);
+		}
 	}
 
 	public void handlePopup(Runnable actionInPopup) {
