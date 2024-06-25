@@ -1,6 +1,6 @@
 package com.convozen.TestBase;
 
-import com.convozen.Pages.Playwrights.WebDashboard;
+import com.convozen.Pages.Playwrights.DashboardWeb;
 import org.openqa.selenium.WebDriver;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -20,7 +20,7 @@ import static com.convozen.Utils.FileUtil.getProperty;
 public class BaseTest extends WebBrowser {
     protected WebDriver driver;
     protected Page page;
-    protected WebDashboard webDashboard;
+    protected DashboardWeb webDashboard;
     public void getSeleniumBrowser() {
         String browserType = getProperty(CommonConstants.CONVOZEN, CommonConstants.BROWSER);
         boolean isHeadless = Boolean
@@ -45,7 +45,7 @@ public class BaseTest extends WebBrowser {
             System.out.println("Launching the " + (isHeadless ? "Headless " : "") + browserType + " browser");
             getPlaywrightBrowser(browserType, isHeadless);
             page = newPage.get();
-            webDashboard = new WebDashboard(page);
+            webDashboard = new DashboardWeb(page);
         } catch (Exception e) {
             System.err.println("Failed to launch the browser : " + e.getMessage());
         }

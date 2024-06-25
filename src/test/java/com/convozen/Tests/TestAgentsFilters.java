@@ -1,8 +1,8 @@
 package com.convozen.Tests;
 
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -17,9 +17,9 @@ import static com.convozen.Utils.FileUtil.getProperty;
 @Listeners(TestListeners.class)
 public class TestAgentsFilters extends BaseTest {
 
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -29,16 +29,16 @@ public class TestAgentsFilters extends BaseTest {
         return dashboard;
     }
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 
     @Test(priority = 1)
     public void VerifyingTeamSearchAgentFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> teams = user.getAgentsPage().getTeaNames();
         log("Retrieved teams: " + teams);
 
@@ -47,7 +47,7 @@ public class TestAgentsFilters extends BaseTest {
     }
     @Test(priority = 2)
     public void VerifyingSearchSelectAddRemoveColumnsFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> origenalColumnList = user.getAgentsPage().getCallsTableDefaultColumns();
         log("Original  : " + origenalColumnList);
 
@@ -72,7 +72,7 @@ public class TestAgentsFilters extends BaseTest {
     @Test(priority = 3)
     public void VerifyViewByAgentFilterFunctionality() throws Exception {
         List<String> filterByList = Arrays.asList("Today", "Yesterday", "Last Week", "Last 1 Month", "Last 2 Months", "Last 3 Months");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Integer> callCount = user.getAgentsPage().viewByFilters(filterByList);
         Assert.assertTrue(callCount.size() >= 2, "Insufficient call count data");
         for (int i = 1; i < callCount.size(); i++) {
@@ -89,7 +89,7 @@ public class TestAgentsFilters extends BaseTest {
     public void VerifyingAgentMadeCallsAndCustomersReachedCalls() {
         try {
             List<String> filterByList = Arrays.asList("Today", "Yesterday", "Last Week", "Last 1 Month", "Last 2 Months", "Last 3 Months");
-            WebDashboard user = getLoginInstance();
+            DashboardWeb user = getLoginInstance();
             int tableCalls = user.getAgentsPage().getAgentTableDetails(filterByList);
             System.out.println("Table Calls: " + tableCalls);
 
@@ -117,7 +117,7 @@ public class TestAgentsFilters extends BaseTest {
     @Test(priority = 5 )
     public void VerifyingAgentStatisticCallData() throws Exception {
         List<String> filterByList = Arrays.asList("Today", "Yesterday", "Last Week", "Last 1 Month", "Last 2 Months", "Last 3 Months");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getAgentsPage().getAgentTableDetails(filterByList);
         String agentDetails = user.getAgentsPage().rowAgentsRowData();
         log("Extracted the Agent : " + agentDetails);
@@ -140,7 +140,7 @@ public class TestAgentsFilters extends BaseTest {
 
     @Test(priority = 6)
     public void longHoldPercentageCalculations() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         Double callCount = user.getAgentsPage().getAgentCallCount();
         Double longSilenceCount = user.getAgentsPage().getLongSilenceCount();
         double expectedLongHoldPercentage = longSilenceCount * 100 / callCount;

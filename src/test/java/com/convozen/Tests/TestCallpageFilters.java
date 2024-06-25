@@ -1,7 +1,7 @@
 package com.convozen.Tests;
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -17,9 +17,9 @@ import static com.convozen.Utils.FileUtil.getProperty;
 
 @Listeners(TestListeners.class)
 public class TestCallpageFilters extends BaseTest {
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -31,7 +31,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 1)
     public void VerifyingDefaultAppliedCallsFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String defaultFilters =  user.getCallPage().getDefaultAppliedFilters();
         boolean conditionMet = defaultFilters.equals("Call Duration:> 30 secs,View By:Yesterday,Transcribed Calls,") ||
                 defaultFilters.equals("Call Duration:> 30 secs,View By:Today,Transcribed Calls,Processed,");
@@ -45,7 +45,7 @@ public class TestCallpageFilters extends BaseTest {
     public void VerifyingColumnFiltersFunctionality() throws Exception {
         List<String> columnList = List.of("Campaign Name", "Mode of Calling", "Process Name");
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> originalColumnList = user.getCallPage().getCallsTableDefaultColumns();
         user.getCallPage().searchSelectAddColumn(columnList);
         log("Searched, selected and Added the columns " + columnList);
@@ -66,7 +66,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 3)
     public void VerifyingSortCallsByDurationFilterFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         int initialCallDuration = user.getCallPage().getCallDuration(TODAY.VALUE());
         log("Extracted the default call duration Successfully: " + initialCallDuration + " seconds");
 
@@ -84,7 +84,7 @@ public class TestCallpageFilters extends BaseTest {
     public void VerifyingViewByCallFilters() throws Exception {
         List<String> filterByList = Arrays.asList("Today", "Yesterday", "Last Week", "Last 1 Month", "Last 2 Months", "Last 3 Months");
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Integer> callCount = user.getCallPage().viewByFilters(filterByList);
         Assert.assertTrue(callCount.size() >= 2, "Insufficient call count data");
         for (int i = 1; i < callCount.size(); i++) {
@@ -100,7 +100,7 @@ public class TestCallpageFilters extends BaseTest {
     @Test(priority = 5)
     public void VerifyingCallerDetailsFiltersByCustomerID_PhoneNumber_AgentName_CustomerMail() throws Exception {
         List<String> columnList = List.of("Campaign Name", "Mode of Calling", "Process Name", "Customer Id", "Customer Email");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getCallPage().searchSelectAddColumn(columnList);
         log("Search and Selected the " + columnList + "Successfully");
@@ -134,7 +134,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 6)
     public void VerifyingCallsByCallIDFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getCallPage().removeTableCols();
 
         List<String> callIdList = user.getCallPage().getCallRecordIds();
@@ -148,7 +148,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 7)
     public void VerifyingCallsTalkTimeFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm");
 
         String timeText = user.getCallPage().applyTalktimeOverlapSilenceFilter(TALKTIME.VALUE(), GRETER_THAN_OR_EQUAL_TO.VALUE(), "05", "30", null, null);
@@ -189,7 +189,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 8)
     public void VerifyingCallsOverLapCallDurationFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String overLapGreaterThanEqualTo = user.getCallPage().applyTalktimeOverlapSilenceFilter(OVERLAP_DURATION.VALUE(), GRETER_THAN_OR_EQUAL_TO.VALUE(), "01", "30", null, null);
         Assert.assertNotNull(overLapGreaterThanEqualTo, "Overlap Call Duration should not be null");
         log("Successfully validated Overlap Call Duration Filter with [" + GRETER_THAN_OR_EQUAL_TO.VALUE() + "] Condition.");
@@ -205,7 +205,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 9)
     public void VerifyingCallsBySilenceDurationFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String silenceGreaterThanEqualTO = user.getCallPage().applyTalktimeOverlapSilenceFilter(SILENCE_DURATION.VALUE(), GRETER_THAN_OR_EQUAL_TO.VALUE(), "1", "30", null, null);
         Assert.assertNotNull(silenceGreaterThanEqualTO, "silence Duration Call Duration should not be null");
 
@@ -219,7 +219,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 10)
     public void VerifyingCallsByTranscriptionStatusAndCallProgressFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String actualTranscribedText = user.getCallPage().getTranscribedProcessedCalls(TRANSCRIPTION_STATUS.VALUE());
         Assert.assertEquals(actualTranscribedText, ("Transcribed Calls"), "Applied Filter text not found in" + actualTranscribedText);
         log("Successfully validated the[" + TRANSCRIPTION_STATUS.VALUE() + "] Filter");
@@ -233,7 +233,7 @@ public class TestCallpageFilters extends BaseTest {
     public void VerifyingByMomentNameByHighlight_Language_checklistName_CallScore_Filters() throws Exception {
         String score = "30", endScore = "70";
         List<String> momentsList = Arrays.asList("Salutation");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getCallPage().insightsFilters(MOMENTS.VALUE(), SELECT_MOMENT_NAME.VALUE(), momentsList);
         List<String> taggedMoments = user.getCallPage().getTaggedMoments();
@@ -276,7 +276,7 @@ public class TestCallpageFilters extends BaseTest {
     @Test(priority = 12)
     public void VerifyingMetaDataFiltersByCampaignName_CallingMode_ProcessNane_DisposeName() throws Exception {
         List<String> columnList = List.of("Campaign Name", "Mode of Calling", "Process Name");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getCallPage().searchSelectAddColumn1(columnList);
         log("Successfully Selected the columns :  " + columnList);
@@ -299,7 +299,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 13)
     public void VerifyingTaggedMomentCount() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         List<Integer> tableTaggedMomentCount = user.getCallPage().getTableMomentEmotions();
         List<Integer> actualCallMomentTotalCount = user.getCallPage().getCallMomentsEmotions();
@@ -313,7 +313,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 14)
     public void VerifyingCallScoreOfTaggedChecklist() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Integer> callScoresList = user.getCallPage().getTableCallScore(5);
         List<Integer> list = user.getCallPage().getChecklistScore(5);
 
@@ -323,7 +323,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 15)
     public void VerifyingTaggedMomentsInChecklistOfCallTableDataWithActualCallVerifying() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getCallPage().applyViewByFilter("Last Week");
         List<String> checklistCallTable = user.getCallPage().getCallTableChecklists();
@@ -339,7 +339,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 16)
     public void VerifyingGenerateCallSummary() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         boolean ans = user.getCallPage().generateCallSummary(SUMMARY.VALUE());
         Assert.assertFalse(ans, "Failed to Generate Summary");
         log("Successfully Generated the Call Summary");
@@ -347,7 +347,7 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 17)
     public void VerifyingGenerateCallSummary_under_Interaction_History() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Boolean> isInteractionSummaryGenerated = user.callsPage.generateIntractionHistoryCallSummary(INTRACTION_HISTORY.VALUE());
         for (Boolean element : isInteractionSummaryGenerated) {
             if (!element) {
@@ -359,16 +359,16 @@ public class TestCallpageFilters extends BaseTest {
 
     @Test(priority = 18)
     public void VerifyingCallRecordingAudioAndOtherButtonFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getCallPage().actionOnCallRecording();
         log("Successfully verified the Call Recording options");
     }
 
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 }

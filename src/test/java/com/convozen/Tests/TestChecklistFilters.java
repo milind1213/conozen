@@ -1,8 +1,8 @@
 package com.convozen.Tests;
 
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -18,9 +18,9 @@ public class TestChecklistFilters extends BaseTest {
     String startDate = CommonConstants.BEFORE_3_DATE(),
             endDate = CommonConstants.CURRENT_DATE();
 
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -30,16 +30,16 @@ public class TestChecklistFilters extends BaseTest {
         return dashboard;
     }
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 
     @Test(priority = 1)
     public void VerifyingChecklistDefaultFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String actualDefaultFilter = user.getChecklistPage().getDefaultAppliedFilters();
         Assert.assertEquals(actualDefaultFilter, "active");
         log("Successfully  Validated Default applied Filters");
@@ -47,7 +47,7 @@ public class TestChecklistFilters extends BaseTest {
 
     @Test(priority = 2)
     public void VerifyingTeamSearchChecklistfilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> teams = user.getChecklistPage().getTeaNames();
         log("Retrieved teams from Dropdowns");
 
@@ -60,7 +60,7 @@ public class TestChecklistFilters extends BaseTest {
 
     @Test(priority = 3)
     public void VerifyingChecklistSearchFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> checklistNames = user.getChecklistPage().getChecklistNames(3);
         log("Retrieved Checklist Names: " + checklistNames);
 
@@ -77,7 +77,7 @@ public class TestChecklistFilters extends BaseTest {
 
     @Test(priority = 4)
     public void VerifyingMataDataFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> campaignNames = user.getChecklistPage().getMetaDataDropdownValues(CAMPAIGN_NAME.VALUE(), SELECT_CAMPAIGN_NAME.VALUE(), 3);
         log("Retrieved Campaign Names: " + campaignNames);
 
@@ -103,7 +103,7 @@ public class TestChecklistFilters extends BaseTest {
 
     @Test(priority = 5)
     public void VerifyingChecklistTypeFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getChecklistPage().checklistDetailsFilters(CHECKLIST_TYPE.VALUE(), SELECT_CHECKLIST_TYPE.VALUE(), CALL_LEVEL.VALUE());
         String checklistType = user.getChecklistPage().isChecklistTypeChecked("callLevel");
 
@@ -121,7 +121,7 @@ public class TestChecklistFilters extends BaseTest {
     }
 
     public void ActivateDeactivate_and_BulkTagUntag() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> checklistNameList = user.getChecklistPage().getCheckListNames();
         log("Extracted the Checklist Names '" + checklistNameList + "' from the Checklist Table");
 

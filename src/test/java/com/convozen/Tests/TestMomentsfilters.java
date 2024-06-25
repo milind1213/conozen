@@ -1,7 +1,7 @@
 package com.convozen.Tests;
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -14,9 +14,9 @@ import static com.convozen.CommonConstants.MOMENT_VALUES.SEMANTIC_;
 import static com.convozen.Utils.FileUtil.getProperty;
 @Listeners(TestListeners.class)
 public class TestMomentsfilters extends BaseTest {
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -26,16 +26,16 @@ public class TestMomentsfilters extends BaseTest {
         return dashboard;
     }
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 
     @Test(priority = 1 )
     public void VerifyingMomentsByTeamSearchFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> teams = user.getMomentPage().getTeams();
         log("Extracted the TeamNames");
 
@@ -46,7 +46,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 2)
     public void VerifyingSearchMomentsByNameFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> momentNameList = user.getMomentPage().getMomentNames();
         log("Extracted the momentNames from the MomentTable");
 
@@ -66,7 +66,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 3)
     public void VerifyingMomentsColumnFilter_Search_Select_Add_Remove() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> origenalColumnList = user.getMomentPage().getMomentTableDefaultColumns();
         List<String> totalColumns = user.getMomentPage().getAllMomentColumnNames();
         log("Extracted the Moments Table Filter Columns Successfully");
@@ -88,7 +88,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority =4)
     public void VerifyingReloadButtonFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getMomentPage().reloadPage();
         log("Successfully Reloaded the Moment Table");
@@ -96,7 +96,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority =5)
     public void VerifyingActivateDeactivateActionFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> momentNameList = user.getMomentPage().getMomentNames();
         log("Extracted the momentNames from the MomentTable");
 
@@ -113,7 +113,7 @@ public class TestMomentsfilters extends BaseTest {
 
     public void VerifyingBulktagMomentActionFilter() throws Exception {
         String startDate = "150320241610", endDate = "040420241602";
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> momentNameList = user.getMomentPage().getMomentNames();
         log("Extracted the momentNames from the MomentTable");
 
@@ -123,7 +123,7 @@ public class TestMomentsfilters extends BaseTest {
 
     public void VerifyingBulkUntagMomentActionFilter() throws Exception {
         String startDate = "150320241610", endDate = "040420241602";
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         List<String> momentNameList = user.getMomentPage().getMomentNames();
         log("Extracted the momentNames from the MomentTable");
@@ -135,7 +135,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 9)
     public void VerifyingMetaDataDropdownByCallingMode_CampaignName_ProcessName_Filters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> totalColumns = user.getMomentPage().getAllMomentColumnNames();
         log("Extracted the Moment Table Filter Columns " + totalColumns);
 
@@ -205,7 +205,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 10)
     public void VerifyingMomentsDetailsActivationStatusFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> columnList = user.getMomentPage().getUncheckedMomentColumnFilterNames();;
         user.getMomentPage().searchSelectAddColumn(columnList);
 
@@ -233,7 +233,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 11)
     public void VerifyingMomentDetailsBYMomentTypeDropdownFilters() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().momentMetaDataFilter(MOMENT_TYPE.VALUE(), SELECT_MOMENT_TYPE.VALUE(), KEYWORD.getKey());
         List<String> keywordList = user.getMomentPage().getMomentType(KEYWORD.getKey());
         if (keywordList == null || keywordList.isEmpty()) {
@@ -283,7 +283,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 12)
     public void VerifyingMomentDetailsSourceDropdownFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().getAllMomentColumnNames();
         List<String> columnList = user.getMomentPage().getUncheckedMomentColumnFilterNames();;
         user.getMomentPage().searchSelectAddColumn(columnList);
@@ -309,7 +309,7 @@ public class TestMomentsfilters extends BaseTest {
 
     @Test(priority = 13)
     public void VerifyingSmartMomentFilter() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().smartMomentFilter(SMARTMOMENTS.VALUE(), SHOW_ONLY_SMARTMOMENTS.VALUE());
         List<String> filterResult =  user.getMomentPage().getSmartCluster();
 

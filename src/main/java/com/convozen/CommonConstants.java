@@ -31,8 +31,24 @@ public final class CommonConstants {
 		return SEMANTIC_SENTENCE.values()[random.nextInt(SEMANTIC_SENTENCE.values().length)];
 	}
 
+
+	public enum STATUS {
+		TO_DO("To Do"),ALL("All"),ONGOING("Ongoing"),COMPLETED("Completed"),OVERDUE("Overdue");
+
+		String value;
+		STATUS(String s) {
+			value = s;
+		}
+
+		public String VALUE() {
+			return value;
+		}
+	}
+
+
+
 	public enum CALLZEN_VALUES {
-		SEMANTIC_MOMENT("Semantic Moment"), MOMENTS("Moments"), GLOBAL("Global"), GLOBL("global"), POSITIVE("Positive"),
+		AUDIT("Audit"),SEMANTIC_MOMENT("Semantic Moment"), MOMENTS("Moments"), GLOBAL("Global"), GLOBL("global"), POSITIVE("Positive"),
 		AAD_ANYWAY("Add anyway"), SUGGEST_SIMMILER_PHRASES("Suggest similar phrases"), DELET_PHRASES("Delete phrases"),
 		FILTERED("Filtered"), TEAM("Team"), FILTER("Filter"), KEYWORD_MOMENT("Keyword Moment"),
 		INSTRUCTIONAL_MOMENT("Instructional Moment"), CAMPAIGN_NAME("Campaign Name"),
@@ -364,39 +380,6 @@ public final class CommonConstants {
 		}
 
 		public String getValue() {
-			return value;
-		}
-	}
-
-	public enum STATUS {
-		Open("Open"), InProgress("In Progress"), Success("Success"), JobCompleted("Job Completed"),
-		Successful("Successful"), VehicleStarted("Vehicle Started"), NotAnswered("Not Answered"),
-		LastSpoken("Last Spoken"), Started, UpdateStatus("Update Status"),
-		InspectionPaymentReceived("Inspection Payment Received"), StartJob("Start Job"),
-		StartedForJob("Started For Job"), Pickupdone("Pickup done"), Reached,
-		SendInvoiceJob("Send Invoice And End Job"), PaymentLinkSent("Payment Link Sent"),
-		InspectionRequired("Inspection Required"), InspectionPaymentLinkSent("Inspection Payment Link Sent"),
-		QuotationSent("Quotation Sent"), JobCancelled("Job Cancelled"), Pending, LeadCreated("Lead Created"), Rejected,
-		ReasonNotListed("Reason Not Listed"), UpdateInventory("Update Inventory"),
-		ReachedDestination("Reached Destination"), PaymentRequested("Payment Requested"),
-		PaymentCompleted("Payment Completed"), PickupDone("Pickup Done"), PaymentSuccessful("Payment Successful"),
-		OrderConfirmed("Order Confirmed"), JobSentToPartner("Job Sent To Partner"), JobScheduled("Job Scheduled"),
-		PartnerStartedForService("Partner Started For Service"), JobStarted("Job Started"),
-		PaymentSuccessfull("Payment Successfull"), InspectionScheduled("Inspection Scheduled"),
-		InspectionStarted("Inspection Started"), AgreementCompleted("Agreement Completed"),
-		SoftCopyShared("Registered Soft Copy Shared");
-
-		String value;
-
-		STATUS(String s) {
-			value = s;
-		}
-
-		STATUS() {
-			value = this.name();
-		}
-
-		public String toString() {
 			return value;
 		}
 	}

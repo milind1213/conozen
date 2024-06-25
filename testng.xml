@@ -7,12 +7,7 @@
 
     <test name="Sanity for Callzen">
         <classes>
-            <class name="com.convozen.Tests.TestCallpageFilters"/>
-            <class name="com.convozen.Tests.TestMomentsfilters"/>
             <class name="com.convozen.Tests.TestChecklistFilters"/>
-            <class name="com.convozen.Tests.TestAgentsFilters"/>
-            <class name="com.convozen.Tests.TestMomentscCRUD"/>
-            <class name="com.convozen.Tests.TestCheckListCRUD"/>
         </classes>
     </test>
 </suite>

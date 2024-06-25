@@ -2,8 +2,8 @@ package com.convozen.Tests;
 
 import com.convozen.CommonConstants;
 import com.convozen.Pages.Playwrights.ConvozenCalls;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -18,8 +18,8 @@ public class TestNewCode extends BaseTest {
     protected ConvozenCalls user = new ConvozenCalls(page);
 
     public void getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -43,10 +43,10 @@ public class TestNewCode extends BaseTest {
 
 
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 }

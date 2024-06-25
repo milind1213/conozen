@@ -1,8 +1,8 @@
 package com.convozen.Tests;
 
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.annotations.Listeners;
@@ -21,9 +21,9 @@ public class TestCheckListCRUD extends BaseTest {
     String startDate = CommonConstants.BEFORE_3_DATE(),
             endDate = CommonConstants.CURRENT_DATE();
 
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -33,17 +33,17 @@ public class TestCheckListCRUD extends BaseTest {
         return dashboard;
     }
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 
     @Test(priority = 1)
     public void VerifyingCreateChecklistWithTeams() throws Exception {
         String checklistName = "Test Checklist " + RANDOM_NAME();
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getChecklistPage().createCheckList(checklistName, TEAM.VALUE());
         log("Entered checklist name: [" + checklistName + "] and selected checklist type: [" + TEAM.VALUE() + "]");
@@ -65,7 +65,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 2)
     public void VerifyDeactivateDeleteChecklistFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Deactivating the [Test Checklist]");
         user.getChecklistPage().deactivateTestChecklist();
 
@@ -77,7 +77,7 @@ public class TestCheckListCRUD extends BaseTest {
     @Test(priority = 3)
     public void VerifyingCreateChecklistWithFilteredFilters() throws Exception {
         String checklistName = "Test Checklist " + RANDOM_NAME();
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getChecklistPage().createCheckList(checklistName, FILTER.VALUE());
         log("Entered checklist name: [" + checklistName + "] and selected checklist type: [" + FILTER.VALUE() + "]");
@@ -109,7 +109,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 4)
     public void VerifyProcessNames_CampaignNames_ModeOfCalling_UpdateFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getChecklistPage().searchDropDowns(campaignNames, modeOfCalling, processNames, callerTypes);
         log("Searched and selected Campaign Names: " + campaignNames + ", Mode of Calling: " + modeOfCalling + ", Process Names: " + processNames + ", Caller Types: " + callerTypes);
@@ -119,7 +119,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 5)
     public void VerifyTrackerChecklistAndUIPriorityUpdateFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getChecklistPage().taggingAttributes(MOMENTS.VALUE(), TAGGING_ATTRIBUTE.VALUE(), "99");
         log("Successfully Updated the checklist[Tracker] [Show Only Tagged] and [UIPriority] Attributes ");
@@ -127,7 +127,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 6)
     public void VerifyBulkTagUntagChecklistFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         String actualUntaggingResponse = user.getChecklistPage().tagUntagChecklist(MOMENTS.VALUE(), TAGGING_ATTRIBUTE.VALUE(), BULK_TAG.VALUE(), startDate, endDate);
         Assert.assertEquals(actualUntaggingResponse, "Bulk job submitted please wait for sometime to see the checklist tagged.");
         log("Successfully validated checklist Untagging from " + startDate + " to " + endDate + ".");
@@ -139,7 +139,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 7)
     public void VerifyDeactivateAndDeleteFilteredChecklistFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Deactivating the [Test Checklist]");
         user.getChecklistPage().deactivateTestChecklist();
 
@@ -151,7 +151,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 8)
     public void VerifyMomentAndCheckListMomentsCount() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Integer> DisplayAddedMomentCount = user.getChecklistPage().getMomentCounts();
         int displaySum = 0;
         for (int num : DisplayAddedMomentCount) {
@@ -178,7 +178,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 9)
     public void VerifyDisplayingMomentsCountWithActualChecklistMoments() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<Integer> displayAddedMomentCountList = user.getChecklistPage().getMomentCountsOfChecklist();
         log("Displaying Moments Count: " + displayAddedMomentCountList);
 
@@ -196,7 +196,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 10)
     public void VerifyingChecklistCallsCoveragePercentage() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         Map<String, Object> callCoverage = user.getChecklistPage().getCallsCoverage();
         for (Map.Entry<String, Object> entry : callCoverage.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
@@ -207,7 +207,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 11)
     public void VerifyCallsOccurredInChecklist() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         List<String> callOccurred = user.getChecklistPage().getCallsOccurred();
         log("Calls in Last 7 Days : " + callOccurred);
 
@@ -217,7 +217,7 @@ public class TestCheckListCRUD extends BaseTest {
 
     @Test(priority = 12)
     public void VerifyViewCallsNavigation() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         int callsCount = user.getChecklistPage().viewCalls();
         Assert.assertTrue(callsCount > 0, "The number of calls should be greater than 0, but was " + callsCount);
@@ -232,7 +232,7 @@ public class TestCheckListCRUD extends BaseTest {
         String Weightage = "30";
         int momentCount = 5;
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getChecklistPage().updateExistingMoment(MOMENTS.VALUE(), Weightage);
         log("Successfully Entered  Moment Weightage :" + Weightage);
 

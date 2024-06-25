@@ -1,7 +1,7 @@
 package com.convozen.Tests;
 import com.convozen.CommonConstants;
-import com.convozen.Pages.Playwrights.WebDashboard;
-import com.convozen.Pages.Playwrights.WebLogin;
+import com.convozen.Pages.Playwrights.DashboardWeb;
+import com.convozen.Pages.Playwrights.ConvozenWebLogin;
 import com.convozen.TestBase.BaseTest;
 import com.convozen.Utils.TestListeners;
 import org.testng.Assert;
@@ -24,9 +24,9 @@ public class TestMomentscCRUD extends BaseTest {
     String startDate = CommonConstants.BEFORE_3_DATE(),
             endDate = CommonConstants.CURRENT_DATE();
 
-    public WebDashboard getLoginInstance() throws Exception {
-        WebLogin webLogin = getWebLogin();
-        WebDashboard dashboard = webLogin.convozenLogin(
+    public DashboardWeb getLoginInstance() throws Exception {
+        ConvozenWebLogin webLogin = getWebLogin();
+        DashboardWeb dashboard = webLogin.convozenLogin(
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_USERNAME),
                 getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_PASSWORD)
         );
@@ -36,18 +36,18 @@ public class TestMomentscCRUD extends BaseTest {
         return dashboard;
     }
 
-    public WebLogin getWebLogin() {
+    public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
         page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
-        return new WebLogin(page);
+        return new ConvozenWebLogin(page);
     }
 
 
     @Test(priority = 1)
     public void VerifyCreateSemanticMomentWithFilter() throws Exception {
         String MOMENT_NAME = "Test Symentic Filtered" + RANDOM_NAME();
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Entering" + MOMENT_NAME + ",Clicking on " + FILTERED.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createFilteredMoment(MOMENT_NAME, FILTERED.VALUE(), POSITIVE.VALUE());
 
@@ -100,7 +100,7 @@ public class TestMomentscCRUD extends BaseTest {
         String MOMENT_NAME = "Test Symentic Global" + RANDOM_NAME();
         System.out.println(" Moment Name :" + MOMENT_NAME);
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Navigated to URL : [ " + webUrl + " ]");
         user.getMomentPage().login(userName, password);
@@ -154,7 +154,7 @@ public class TestMomentscCRUD extends BaseTest {
     public void VerifyEditSemanticMomentsFunctionality() throws Exception {
         String MOMENT_NAME = RANDOM_NAME();
         int deleteMomentsCounts = 3;
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
 
         user.getMomentPage().EditMomentDetails();
@@ -187,7 +187,7 @@ public class TestMomentscCRUD extends BaseTest {
 
     @Test(priority = 4)
     public void VerifyUpdateFeedbackAndUntagMomentsFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().momentMStatusDetailsFilters(MOMENT_ACTIVATION_STATUS.VALUE(), ACTIVE.VALUE(), INACTIVE.VALUE());
         log("Successfully Applied the [" + MOMENT_ACTIVATION_STATUS.VALUE() + "] filter with [" + INACTIVE.VALUE() + "] status");
 
@@ -214,7 +214,7 @@ public class TestMomentscCRUD extends BaseTest {
 
     @Test(priority = 5)
     public void VerifyDeactivateDeleteMomentsFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Deactivating the [Test Moments]");
         user.getMomentPage().deactivateTestMoments();
 
@@ -229,7 +229,7 @@ public class TestMomentscCRUD extends BaseTest {
         String MOMENT_NAME = "Test KeyWord" + RANDOM_NAME();
         List<String> KEY_LIST = Arrays.asList("Hello");
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().createMoment(MOMENT_NAME, GLOBAL.VALUE(), POSITIVE.VALUE());
         log("Entered [" + MOMENT_NAME + "],Clicking on [" + GLOBAL.VALUE() + "] and [" + POSITIVE.VALUE() + "]");
 
@@ -278,7 +278,7 @@ public class TestMomentscCRUD extends BaseTest {
     public void VerifyCreateFilteredKeywordMomentsWithContainsOneOf() throws Exception {
         String MOMENT_NAME = "Test KeyWord" + RANDOM_NAME();
         List<String> KEY_LIST = Arrays.asList("Hello");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Entering" + MOMENT_NAME + ",Clicking on " + FILTERED.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createFilteredMoment(MOMENT_NAME, FILTERED.VALUE(), POSITIVE.VALUE());
@@ -337,7 +337,7 @@ public class TestMomentscCRUD extends BaseTest {
     public void VerifyCreateGlobalKeywordMomentsWithContainsAll() throws Exception {
         String MOMENT_NAME = "Test KeyWord" + RANDOM_NAME();
         List<String> keywordsMust = Arrays.asList("Hello", "Good morning");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().createMoment(MOMENT_NAME, GLOBAL.VALUE(), POSITIVE.VALUE());
         log("Entered" + MOMENT_NAME + ",Clicking on " + GLOBAL.VALUE() + " and " + POSITIVE.VALUE());
 
@@ -388,7 +388,7 @@ public class TestMomentscCRUD extends BaseTest {
     public void VerifyCreateFilteredKeywordMomentsWithContainsAll() throws Exception {
         String MOMENT_NAME = "Test KeyWord" + RANDOM_NAME();
         List<String> keywordsMust = Arrays.asList("Hello", "Good morning");
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Entering" + MOMENT_NAME + ",Clicking on " + FILTERED.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createFilteredMoment(MOMENT_NAME, FILTERED.VALUE(), POSITIVE.VALUE());
@@ -450,7 +450,7 @@ public class TestMomentscCRUD extends BaseTest {
         List<String> columnList = List.of("Updated By", "Updated On", "Bulk Tag Status");
         List<String> inputKeywords = List.of(RANDOM_KYWORD().VALUE());
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         user.getMomentPage().editKeywordMomentDetail();
         log("Clicked on the  the from Table Successfully ");
 
@@ -515,7 +515,7 @@ public class TestMomentscCRUD extends BaseTest {
 
     @Test(priority = 11)
     public void VerifyDeactivateDeleteKeywordMomentFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Deactivating the [Test Moments]");
         user.getMomentPage().deactivateTestMoments();
@@ -531,7 +531,7 @@ public class TestMomentscCRUD extends BaseTest {
         String MOMENT_NAME = "Test Instructional" + RANDOM_NAME();
         List<String> INST_LIST = Arrays.asList(RANDOM_INST().VALUE(), RANDOM_INST().VALUE(), RANDOM_INST().VALUE());
         List<String> KEY_LIST = Arrays.asList(RANDOM_KYWORD().VALUE(), RANDOM_KYWORD().VALUE());
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Entering" + MOMENT_NAME + ",Clicking on " + GLOBAL.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createInstructionalMoment(MOMENT_NAME, GLOBAL.VALUE(), POSITIVE.VALUE());
 
@@ -554,7 +554,7 @@ public class TestMomentscCRUD extends BaseTest {
         String MOMENT_NAME = "Test Instructional" + RANDOM_NAME();
         List<String> INST_LIST = Arrays.asList(RANDOM_INST().VALUE(), RANDOM_INST().VALUE(), RANDOM_INST().VALUE());
         List<String> KEY_LIST = Arrays.asList(RANDOM_KYWORD().VALUE(), RANDOM_KYWORD().VALUE());
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Entering" + MOMENT_NAME + ",Clicking on " + FILTERED.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createFilteredMoment(MOMENT_NAME, FILTERED.VALUE(), POSITIVE.VALUE());
@@ -588,7 +588,7 @@ public class TestMomentscCRUD extends BaseTest {
         List<String> INST_LIST = Arrays.asList(RANDOM_INS_TEST().VALUE(), RANDOM_INS_TEST().VALUE(), RANDOM_INS_TEST().VALUE());
         List<String> KEY_LIST = Arrays.asList(RANDOM_KYWORD().VALUE(), RANDOM_KYWORD().VALUE());
 
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
         log("Entering" + MOMENT_NAME + ",Clicking on " + GLOBAL.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createInstructionalMoment(MOMENT_NAME, GLOBAL.VALUE(), POSITIVE.VALUE());
 
@@ -606,7 +606,7 @@ public class TestMomentscCRUD extends BaseTest {
         String MOMENT_NAME = "Test Instructional" + RANDOM_NAME();
         List<String> INST_LIST = Arrays.asList(RANDOM_INS_TEST().VALUE(), RANDOM_INS_TEST().VALUE(), RANDOM_INS_TEST().VALUE());
         List<String> KEY_LIST = Arrays.asList(RANDOM_KYWORD().VALUE(), RANDOM_KYWORD().VALUE());
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Entering" + MOMENT_NAME + ",Clicking on " + FILTERED.VALUE() + " and " + POSITIVE.VALUE());
         user.getMomentPage().createFilteredMoment(MOMENT_NAME, FILTERED.VALUE(), POSITIVE.VALUE());
@@ -630,7 +630,7 @@ public class TestMomentscCRUD extends BaseTest {
 
     @Test(priority = 16)
     public void VerifyDeactivateDeleteMomentFunctionality() throws Exception {
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         log("Deactivating the [Test Moments]");
         user.getMomentPage().deactivateTestMoments();
@@ -646,7 +646,7 @@ public class TestMomentscCRUD extends BaseTest {
         List<String> columnList = List.of("Updated By", "Updated On", "Bulk Tag Status");
         List<String> instructionalList = List.of("is agent greet?");
         String url = "https://nobroker.callzen.ai/conversation-info?conversationId=7e2db36d-4bdf-46f8-aa35-9f4ad39486ff&conversationType=call";
-        WebDashboard user = getLoginInstance();
+        DashboardWeb user = getLoginInstance();
 
         user.getMomentPage().editInstructionalMomentDetail();
         log("Clicked on the  the from Table Successfully ");

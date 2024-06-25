@@ -6,10 +6,10 @@ import com.microsoft.playwright.Page;
 import static com.convozen.Pages.Playwrights.Locators.*;
 import static com.convozen.Pages.Playwrights.Locators.buttonText;
 
-public class WebLogin extends CommonPlaywright {
+public class ConvozenWebLogin extends CommonPlaywright {
     public Page page;
 
-    public WebLogin(Page page) {
+    public ConvozenWebLogin(Page page) {
         super(page);
         this.page = page;
     }
@@ -19,7 +19,7 @@ public class WebLogin extends CommonPlaywright {
     protected String nextBtn = "//span[contains(text(),'Next')]";
     protected String passwordInput = "//input[@name='Passwd']";
 
-    public WebDashboard convozenLogin(String email, String password) {
+    public DashboardWeb convozenLogin(String email, String password) {
         page.waitForSelector(emailField);
         waitFor(5);
         try {
@@ -42,7 +42,7 @@ public class WebLogin extends CommonPlaywright {
         } catch (Exception e) {
             log("Error: An error in login : " + e.getMessage());
         }
-        return new WebDashboard(page); // Return the dashboard instance after login
+        return new DashboardWeb(page); // Return the dashboard instance after login
     }
 
     public boolean isPageOpenSuccessfully() {
@@ -53,6 +53,18 @@ public class WebLogin extends CommonPlaywright {
             return false;
         }
     }
+
+    public boolean isAuditPageOpenSuccessfully() {
+        try {
+            page.waitForSelector(".nb__pFmBT");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
+
 
     public void selectPage(String title) {
         waitFor(3);
