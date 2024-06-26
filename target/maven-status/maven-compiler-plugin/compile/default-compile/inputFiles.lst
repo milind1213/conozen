@@ -8,6 +8,7 @@
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/DashboardWeb.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/Locators.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Selenium/ConvozenChecklists.java
+/home/milind/conozen/src/main/java/com/convozen/Pages/Selenium/LoginHome.java
 /home/milind/conozen/src/main/java/com/convozen/Utils/ExtentManager.java
 /home/milind/conozen/src/main/java/com/convozen/CommonConstants.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/ConvozenAgents.java
@@ -15,7 +16,6 @@
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/ConvozenCalls.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/ConvozenWebLogin.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/ConvozenAudits.java
-/home/milind/conozen/src/main/java/com/convozen/Pages/Selenium/ConvozenWebLogin.java
 /home/milind/conozen/src/main/java/com/convozen/Utils/FileUtil.java
 /home/milind/conozen/src/main/java/com/convozen/CommonUtils/CommonSelenium.java
 /home/milind/conozen/src/main/java/com/convozen/Pages/Playwrights/ConvozenChecklists.java

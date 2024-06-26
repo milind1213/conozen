@@ -13,6 +13,7 @@ com/convozen/CommonConstants$GENDER.class
 com/convozen/CommonConstants.class
 com/convozen/CommonConstants$MOMENT_KEYS.class
 com/convozen/CommonConstants$CONFIRMATION.class
+com/convozen/Pages/Selenium/LoginHome.class
 com/convozen/CommonUtils/CommonPlaywright.class
 com/convozen/Pages/Playwrights/ConvozenChecklists.class
 com/convozen/CommonConstants$INST_EX1.class
@@ -26,7 +27,6 @@ com/convozen/Pages/Playwrights/ConvozenWebLogin.class
 com/convozen/Pages/Selenium/ConvozenWebDashboard.class
 com/convozen/CommonConstants$STATUS.class
 com/convozen/CommonConstants$AVAILABILITY.class
-com/convozen/Pages/Selenium/ConvozenWebLogin.class
 com/convozen/Pages/Selenium/ConvozenAgents.class
 com/convozen/CommonConstants$CONFIRM.class
 com/convozen/Pages/Playwrights/ConvozenCalls.class

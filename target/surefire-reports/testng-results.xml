@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-26T19:41:55 IST" name="Daily Sanity Convozen" finished-at="2024-06-26T19:42:19 IST" duration-ms="23511">
+  <suite started-at="2024-06-26T21:10:21 IST" name="Daily Sanity Convozen" finished-at="2024-06-26T21:10:32 IST" duration-ms="10990">
     <groups>
     </groups>
-    <test started-at="2024-06-26T19:41:55 IST" name="Sanity for Callzen" finished-at="2024-06-26T19:42:19 IST" duration-ms="23511">
-      <class name="com.convozen.Tests.TestNewCode">
-        <test-method signature="test()[pri:0, instance:com.convozen.Tests.TestNewCode@1fa268de]" started-at="2024-06-26T19:41:55 IST" name="test" finished-at="2024-06-26T19:42:19 IST" duration-ms="23205" status="PASS">
+    <test started-at="2024-06-26T21:10:21 IST" name="Sanity for Callzen" finished-at="2024-06-26T21:10:32 IST" duration-ms="10990">
+      <class name="com.convozen.Tests.TestSeleniumCode">
+        <test-method signature="test()[pri:0, instance:com.convozen.Tests.TestSeleniumCode@1fa268de]" started-at="2024-06-26T21:10:21 IST" name="test" finished-at="2024-06-26T21:10:32 IST" duration-ms="10738" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.convozen.Tests.TestNewCode@1fa268de]" started-at="2024-06-26T19:42:19 IST" name="tearDown" finished-at="2024-06-26T19:42:19 IST" duration-ms="46" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.convozen.Tests.TestSeleniumCode@1fa268de]" started-at="2024-06-26T21:10:32 IST" name="tearDown" finished-at="2024-06-26T21:10:32 IST" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.convozen.Tests.TestNewCode -->
+      </class> <!-- com.convozen.Tests.TestSeleniumCode -->
     </test> <!-- Sanity for Callzen -->
   </suite> <!-- Daily Sanity Convozen -->
 </testng-results>

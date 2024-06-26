@@ -9,5 +9,6 @@ com/convozen/Tests/TestAuditPageCRUD.class
 com/convozen/TestBase/BaseTest.class
 com/convozen/Tests/TestAgentsFilters.class
 com/convozen/Tests/TestCallpageFilters.class
+com/convozen/Tests/TestSeleniumCode.class
 com/convozen/Tests/TestSmartClustersCRUD.class
 com/convozen/Tests/TestMomentscCRUD.class
