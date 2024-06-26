@@ -10,7 +10,6 @@ public class ConovenMoments extends CommonSelenium {
 	public ConovenMoments(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
-
 	}
 
 }

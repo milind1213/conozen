@@ -7,7 +7,7 @@
 
     <test name="Sanity for Callzen">
         <classes>
-            <class name="com.convozen.Tests.TestNewCode"/>
+            <class name="com.convozen.Tests.TestSeleniumCode"/>
         </classes>
     </test>
 </suite>

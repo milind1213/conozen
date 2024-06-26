@@ -21,6 +21,7 @@ public class BaseTest extends WebBrowser {
     protected WebDriver driver;
     protected Page page;
     protected DashboardWeb webDashboard;
+
     public void getSeleniumBrowser() {
         String browserType = getProperty(CommonConstants.CONVOZEN, CommonConstants.BROWSER);
         boolean isHeadless = Boolean
