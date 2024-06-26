@@ -4,10 +4,9 @@
         <listener class-name="com.convozen.TestBase.RetryListener"/>
         <listener class-name="com.convozen.Utils.TestListeners"/>
     </listeners>
-
     <test name="Sanity for Callzen">
         <classes>
-            <class name="com.convozen.Tests.TestSeleniumCode"/>
+            <class name="com.convozen.Tests.TestNewCode"/>
         </classes>
     </test>
 </suite>

@@ -97,15 +97,8 @@ public class WebBrowser {
 			throw new IllegalArgumentException("Unsupported Browser Type: " + browserType);
 		}
 		newPage.set(browser.get().newPage());
-		newPage.get().evaluate("() => { document.body.style.zoom = '80%'; }");
-		maximizeWindow(newPage.get());
 	}
 
-	private void maximizeWindow(Page page) {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int screenWidth = (int) screenSize.getWidth();
-		int screenHeight = (int) screenSize.getHeight();
-		page.setViewportSize(screenWidth, screenHeight);
-	}
+
 	
 }
