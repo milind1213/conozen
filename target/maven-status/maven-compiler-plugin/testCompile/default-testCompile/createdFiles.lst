@@ -1,0 +1,15 @@
+com/convozen/Tests/TestNewCode.class
+com/convozen/Tests/Playwright.class
+com/convozen/Tests/TestAuditFeatures.class
+com/convozen/Tests/TestCheckListCRUD.class
+com/convozen/Tests/TestMomentsfilters.class
+com/convozen/Tests/TestFiltersSmartCluster.class
+com/convozen/Tests/Selenium.class
+com/convozen/Tests/TestChecklistFilters.class
+com/convozen/TestBase/RetryListener.class
+com/convozen/Tests/TestAuditPageCRUD.class
+com/convozen/TestBase/BaseTest.class
+com/convozen/Tests/TestAgentsFilters.class
+com/convozen/Tests/TestCallpageFilters.class
+com/convozen/Tests/TestSmartClustersCRUD.class
+com/convozen/Tests/TestMomentscCRUD.class
