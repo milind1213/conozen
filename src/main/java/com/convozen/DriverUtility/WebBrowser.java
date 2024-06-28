@@ -30,7 +30,6 @@ public class WebBrowser {
 
 	public void getSeleniumDriver(String browserType, boolean isHeadless) {
 		if (browserType.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
@@ -58,7 +57,6 @@ public class WebBrowser {
 			webDriverList.add(driver);
 
 		} else if (browserType.equalsIgnoreCase("firefox")) {
-			WebDriverManager.chromedriver().setup();
 			FirefoxOptions option = new FirefoxOptions();
 			option.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			if (isHeadless) {
