@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-06-29T00:32:55 IST" name="Daily Sanity Convozen" finished-at="2024-06-29T00:33:17 IST" duration-ms="22459">
+    <groups>
+    </groups>
+    <test started-at="2024-06-29T00:32:55 IST" name="Sanity for Callzen" finished-at="2024-06-29T00:33:17 IST" duration-ms="22459">
+      <class name="com.convozen.Tests.TestNewCode">
+        <test-method signature="test()[pri:0, instance:com.convozen.Tests.TestNewCode@4f18837a]" started-at="2024-06-29T00:32:55 IST" name="test" finished-at="2024-06-29T00:33:17 IST" duration-ms="22123" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.convozen.Tests.TestNewCode@4f18837a]" started-at="2024-06-29T00:33:17 IST" name="tearDown" finished-at="2024-06-29T00:33:17 IST" duration-ms="52" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.convozen.Tests.TestNewCode -->
+    </test> <!-- Sanity for Callzen -->
+  </suite> <!-- Daily Sanity Convozen -->
+</testng-results>

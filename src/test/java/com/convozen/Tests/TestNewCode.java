@@ -42,10 +42,9 @@ public class TestNewCode extends BaseTest {
     }
 
 
-
     public ConvozenWebLogin getWebLogin() {
         getPlaywrightBrowser();
-        page.navigate(getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
+        page.navigate("https://nobroker.convozen.ai/");
         log("Opening URL: " + getProperty(CommonConstants.CONVOZEN, CommonConstants.CONVOZEN_WEBURL));
         return new ConvozenWebLogin(page);
     }

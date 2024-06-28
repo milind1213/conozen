@@ -1,9 +1,7 @@
 package com.convozen.Pages.Selenium;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.convozen.CommonUtils.CommonSelenium;
 
 public class ConvozenWebDashboard extends CommonSelenium {
@@ -13,7 +11,7 @@ public class ConvozenWebDashboard extends CommonSelenium {
 	private final ConvozenAgents agents;
 	private final ConvozenCalls calls;
 	private final ConvozenChecklists checklists;
-	private final ConvozenWebLogin weblogin;
+	private final LoginHome weblogin;
 
 	public ConvozenWebDashboard(WebDriver driver) {
 		super(driver);
@@ -23,26 +21,26 @@ public class ConvozenWebDashboard extends CommonSelenium {
 		agents = new ConvozenAgents(driver);
 		calls = new ConvozenCalls(driver);
 		checklists = new ConvozenChecklists(driver);
-		weblogin = new ConvozenWebLogin(driver);
+		weblogin = new LoginHome(driver);
 	}
 
-	public ConvozenWebLogin getWebLogin() {
+	public LoginHome getWebLogin() {
 		return weblogin;
 	}
 
-	public ConovenMoments getMoments() {
+	public ConovenMoments getMoment() {
 		return moments;
 	}
 
-	public ConvozenAgents getAgents() {
+	public ConvozenAgents getAgent() {
 		return agents;
 	}
 
-	public ConvozenCalls getCallss() {
+	public ConvozenCalls getCall() {
 		return calls;
 	}
 
-	public ConvozenChecklists getChecklistss() {
+	public ConvozenChecklists getChecklist() {
 		return checklists;
 	}
 
