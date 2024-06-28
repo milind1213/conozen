@@ -1,10 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/playwright:v1.45.0-jammy'
-            args '-u root' // Optional: Run Docker container as root if necessary
-        }
-    }
+    agent any
+
     stages {
         stage('Checkout') {
             steps {
@@ -14,17 +10,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Installing npm dependencies...'
-                sh 'npm ci'
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                echo 'Running Playwright tests...'
-                sh 'npx playwright test'
+                echo 'Cleaning and testing Maven project...'
+                sh 'mvn clean test'
             }
         }
     }
+
     post {
         always {
             echo 'Archiving test results...'
