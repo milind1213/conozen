@@ -20,7 +20,7 @@ public class LoginHome extends CommonSelenium {
 
 	public ConvozenWebDashboard webLogin(String email, String password) {
 		waitFor(2);
-
+		waitForElementClickable(driver.findElement(By.id("email")),10);
 		sendKeys(By.id("email"), email);
 		log("Entered Email ID");
 
