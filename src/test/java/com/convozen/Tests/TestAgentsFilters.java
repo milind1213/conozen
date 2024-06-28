@@ -137,7 +137,6 @@ public class TestAgentsFilters extends BaseTest {
         log("Successfully validated in the Agent Statistics [ViewBy Dropdown] Filters");
     }
 
-
     @Test(priority = 6)
     public void longHoldPercentageCalculations() throws Exception {
         DashboardWeb user = getLoginInstance();

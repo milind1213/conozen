@@ -1,0 +1,26 @@
+# Created at 2024-06-28T16:40:04.119
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'Removing unused browser at /home/milind/.cache/ms-playwright/chromium-1112'.
+
+# Created at 2024-06-28T16:40:04.120
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'Removing unused browser at /home/milind/.cache/ms-playwright/firefox-1447'.
+
+# Created at 2024-06-28T16:40:04.120
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'Removing unused browser at /home/milind/.cache/ms-playwright/webkit-1992'.
+
+# Created at 2024-06-28T16:40:04.174
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream 'Downloading Chromium 125.0.6422.26 (playwright build v1117)[2m from https://playwright.azureedge.net/builds/chromium/1117/chromium-linux.zip[22m'.
+
+# Created at 2024-06-28T16:40:04.815
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '|                                                                                |   0% of 156.8 MiB'.
+
+# Created at 2024-06-28T16:40:18.770
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream '|￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ￢ﾖﾠ                                                                        |  10% of 156.8 MiB'.
+
+# Created at 2024-06-28T16:40:21.078
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: EXIT
+java.io.EOFException
+	at org.apache.maven.surefire.booter.spi.LegacyMasterProcessChannelDecoder.decode(LegacyMasterProcessChannelDecoder.java:135)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:343)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+
