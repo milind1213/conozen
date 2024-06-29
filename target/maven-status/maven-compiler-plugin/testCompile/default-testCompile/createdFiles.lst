@@ -4,6 +4,7 @@ com/convozen/Tests/TestCheckListCRUD.class
 com/convozen/Tests/TestMomentsfilters.class
 com/convozen/Tests/TestFiltersSmartCluster.class
 com/convozen/Tests/TestChecklistFilters.class
+com/convozen/Tests/PLayrighttestcode.class
 com/convozen/TestBase/RetryListener.class
 com/convozen/Tests/TestAuditPageCRUD.class
 com/convozen/TestBase/BaseTest.class
