@@ -32,7 +32,8 @@ public class LoginHome extends CommonSelenium {
 		return new ConvozenWebDashboard(driver);
 	}
 
-	public boolean isPageOpenSuccessfully() {
+	public boolean isPageOpenSuccessfully() throws InterruptedException {
+		Thread.sleep(5);
 		WebElement ele = driver.findElement(pageElement);
 		try {
 		waitForElementClickable(ele,2);
