@@ -27,7 +27,7 @@ public class WebBrowser {
 
 	public void getSeleniumDriver(String browserType, boolean isHeadless) {
 		if (browserType.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "/home/milind/conozen/resource/chromedriver");
+			System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
 			ChromeOptions options = new ChromeOptions();
 			options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
