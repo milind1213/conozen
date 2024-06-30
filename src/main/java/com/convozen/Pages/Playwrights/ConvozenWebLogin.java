@@ -20,6 +20,8 @@ public class ConvozenWebLogin extends CommonPlaywright {
     protected String passwordInput = "//input[@name='Passwd']";
 
     public DashboardWeb convozenLogin(String email, String password) {
+       page.reload();
+       waitFor(2);
         page.waitForSelector(emailField);
         waitFor(5);
         try {
