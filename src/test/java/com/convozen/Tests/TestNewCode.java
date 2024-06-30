@@ -29,7 +29,7 @@ public class TestNewCode extends BaseTest {
     }
 
     @Test
-    public void test() throws Exception {
+    public void VerifyingDefaultFilters() throws Exception {
         getLoginInstance();
         user = new ConvozenCalls(page);
 
