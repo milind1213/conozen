@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-06-30T14:16:23 IST" name="Daily Sanity Convozen" finished-at="2024-06-30T14:16:43 IST" duration-ms="19665">
+  <suite started-at="2024-06-30T14:25:54 IST" name="Daily Sanity Convozen" finished-at="2024-06-30T14:26:14 IST" duration-ms="19829">
     <groups>
     </groups>
-    <test started-at="2024-06-30T14:16:23 IST" name="Sanity for Callzen" finished-at="2024-06-30T14:16:43 IST" duration-ms="19665">
+    <test started-at="2024-06-30T14:25:54 IST" name="Sanity for Callzen" finished-at="2024-06-30T14:26:14 IST" duration-ms="19829">
       <class name="com.convozen.Tests.TestNewCode">
-        <test-method signature="test()[pri:0, instance:com.convozen.Tests.TestNewCode@1dde4cb2]" started-at="2024-06-30T14:16:23 IST" name="test" finished-at="2024-06-30T14:16:43 IST" duration-ms="19388" status="PASS">
+        <test-method signature="test()[pri:0, instance:com.convozen.Tests.TestNewCode@1dde4cb2]" started-at="2024-06-30T14:25:54 IST" name="test" finished-at="2024-06-30T14:26:14 IST" duration-ms="19532" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.convozen.Tests.TestNewCode@1dde4cb2]" started-at="2024-06-30T14:16:43 IST" name="tearDown" finished-at="2024-06-30T14:16:43 IST" duration-ms="53" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.convozen.Tests.TestNewCode@1dde4cb2]" started-at="2024-06-30T14:26:14 IST" name="tearDown" finished-at="2024-06-30T14:26:14 IST" duration-ms="52" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
