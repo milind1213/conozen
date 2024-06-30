@@ -23,7 +23,7 @@ public class ConvozenWebLogin extends CommonPlaywright {
        page.reload();
        waitFor(2);
         page.waitForSelector(emailField);
-        waitFor(5);
+
         try {
             page.waitForSelector("//*[@id='email' or @placeholder='example@abc.com']", new Page.WaitForSelectorOptions().setTimeout(60000));
             log("Entering username: "+email);

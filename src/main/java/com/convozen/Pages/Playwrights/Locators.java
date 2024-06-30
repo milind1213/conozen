@@ -33,7 +33,7 @@ public interface Locators {
     String modeOfCallingTxt = "//p[.='Mode of calling *']";
     String selectedTeamloc = "//*[@class='nb__ObcR9']//button[1]";
     //
-    String emailField = "//*[@id='email' or @placeholder='example@abc.com']";
+    String emailField = "//input[@id='email' or @placeholder='example@abc.com']";
     String passwordField = "//*[@id='password' or @placeholder='Enter Password']";
     String loginBtn = "//button[@class='nb__1Pa89' and text()='Sign In']";
     String headerLocator = "//*[@class='nb__3eMzz']//following-sibling::span[text()='menu']";
